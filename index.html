@@ -4,519 +4,1466 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Civic Ledger — Berlin gathering prep</title>
+
+<!-- Fonts — matching v9 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #1a1a17;
-    --ink-soft: #4a4a44;
-    --ink-faint: #76756d;
-    --paper: #faf8f3;
-    --paper-2: #f3f0e7;
-    --card: #ffffff;
-    --line: #e4e0d4;
-    --line-soft: #ece8dd;
-    --teal: #0f6e56;
-    --teal-bg: #e1f5ee;
-    --teal-soft: #5dcaa5;
-    --amber: #854f0b;
-    --amber-bg: #faeeda;
-    --coral: #993c1d;
-    --coral-bg: #faece7;
-    --purple: #3c3489;
-    --purple-bg: #eeedfe;
-    --blue: #185fa5;
-    --blue-bg: #e6f1fb;
-    --display: 'Fraunces', Georgia, serif;
-    --body: 'Newsreader', Georgia, serif;
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..600,30..100&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Tailwind — matching v9 -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          paper:      '#FFFFFF',
+          'paper-2':  '#F5F3F0',
+          'paper-3':  '#F0EFEC',
+          'paper-4':  '#EDE8E3',
+          ink:        '#0E1B2C',
+          'ink-soft': '#2A3A52',
+          mute:       '#6B7280',
+          rule:       '#D8D3C4',
+          'rule-2':   '#E8E3D3',
+          accent:     '#2E4FA8',
+          'accent-2': '#B8C4DD',
+          lav:        '#6E5C9C',
+          'lav-2':    '#D6CFE5',
+          live:       '#C8442D',
+          teal:       '#0f6e56',
+          'teal-soft':'#5dcaa5',
+          'teal-bg':  '#e1f5ee',
+          amber:      '#854f0b',
+          'amber-bg': '#faeeda',
+          coral:      '#993c1d',
+          'coral-bg': '#faece7',
+          purple:     '#3c3489',
+          'purple-bg':'#eeedfe',
+          blue:       '#185fa5',
+          'blue-bg':  '#e6f1fb',
+        },
+        fontFamily: {
+          display: ['Fraunces', 'Georgia', 'serif'],
+          sans:    ['"IBM Plex Sans"', 'system-ui', 'sans-serif'],
+          mono:    ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
+        },
+        maxWidth: { page: '1240px' },
+      },
+    },
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+</script>
+
+<style>
+  :root { color-scheme: light; }
   html { scroll-behavior: smooth; }
   body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--body);
-    font-size: 19px;
-    line-height: 1.65;
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    color: #0E1B2C;
+    background: #FFFFFF;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 28px; }
 
-  /* nav */
-  nav {
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(250,248,243,0.92);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--line);
+  /* ─── Paper grain ─────────────────────────────────────────── */
+  .grain::before {
+    content: ""; position: fixed; inset: 0;
+    pointer-events: none; z-index: 100;
+    opacity: .035; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   }
-  nav .wrap { display: flex; flex-wrap: wrap; gap: 6px 20px; align-items: center; padding-top: 13px; padding-bottom: 13px; }
-  nav .brand { font-family: var(--display); font-weight: 600; font-size: 15px; letter-spacing: -0.01em; margin-right: auto; }
-  nav a { color: var(--ink-faint); text-decoration: none; font-size: 13.5px; font-family: var(--body); white-space: nowrap; margin-right: 20px; transition: color .15s; }
-  nav a:hover { color: var(--teal); }
 
-  /* hero */
-  header.hero { padding: 88px 0 64px; border-bottom: 1px solid var(--line); }
-  .kicker { font-family: var(--body); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 26px; }
-  h1 { font-family: var(--display); font-weight: 500; font-size: 52px; line-height: 1.04; letter-spacing: -0.025em; margin-bottom: 26px; }
-  h1 em { font-style: italic; color: var(--teal); }
-  .standfirst { font-size: 22px; line-height: 1.5; color: var(--ink-soft); max-width: 620px; }
-  .meta-row { margin-top: 38px; display: flex; flex-wrap: wrap; font-family: var(--body); }
-  .meta-row div { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin-right: 44px; margin-bottom: 8px; }
-  .meta-row strong { display: block; color: var(--ink); font-size: 15px; font-weight: 500; letter-spacing: 0; text-transform: none; margin-top: 3px; white-space: nowrap; }
+  /* ─── Section backgrounds ─────────────────────────────────── */
+  .bg-stone { background-color: #EEF0F7; }
+  .bg-sand  { background-color: #F0EFEC; }
 
-  section { padding: 64px 0; border-bottom: 1px solid var(--line); }
-  .sec-num { font-family: var(--body); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
-  h2 { font-family: var(--display); font-weight: 500; font-size: 34px; line-height: 1.12; letter-spacing: -0.02em; margin-bottom: 22px; }
-  h3 { font-family: var(--display); font-weight: 500; font-size: 22px; line-height: 1.2; margin: 36px 0 14px; }
-  p { margin-bottom: 18px; }
-  p.lead { font-size: 21px; color: var(--ink-soft); }
-  .pull { font-family: var(--display); font-style: italic; font-size: 26px; line-height: 1.35; color: var(--teal); margin: 32px 0; padding-left: 22px; border-left: 3px solid var(--teal-soft); }
+  /* ─── Typography ──────────────────────────────────────────── */
+  .display {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+    letter-spacing: -0.02em;
+    line-height: 0.98;
+    font-weight: 380;
+  }
+  .display em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 80;
+    color: #2E4FA8;
+  }
+  .display-sm {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: "opsz" 72, "SOFT" 30;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
+    font-weight: 400;
+  }
+  .mono-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .hairline   { border-color: #D8D3C4; }
+  .hairline-2 { border-color: #E8E3D3; }
 
-  /* arguments */
-  .args { margin-top: 30px; }
-  .arg { display: grid; grid-template-columns: 38px 1fr; gap: 16px; padding: 20px 0; border-top: 1px solid var(--line-soft); }
-  .arg:first-child { border-top: none; }
-  .arg .n { font-family: var(--display); font-weight: 500; font-size: 24px; color: var(--teal-soft); line-height: 1; padding-top: 3px; }
-  .arg h4 { font-family: var(--display); font-weight: 500; font-size: 20px; line-height: 1.25; margin-bottom: 7px; }
-  .arg p { font-size: 17px; color: var(--ink-soft); margin: 0; line-height: 1.55; }
-  .tag { display: inline-block; font-family: var(--body); font-size: 12px; padding: 2px 9px; border-radius: 20px; margin-left: 8px; vertical-align: 2px; font-style: normal; }
-  .t-ev { background: var(--teal-bg); color: var(--teal); }
-  .t-part { background: var(--amber-bg); color: var(--amber); }
-  .t-as { background: var(--coral-bg); color: var(--coral); }
-  .t-fut { background: var(--purple-bg); color: var(--purple); }
+  /* ─── Nav ──────────────────────────────────────────────────── */
+  .nav-blur {
+    backdrop-filter: saturate(140%) blur(10px);
+    background-color: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(200, 196, 188, 0.5);
+  }
+  section[id] { scroll-margin-top: 80px; }
 
-  /* investor lens */
-  .lens-q { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; margin: 14px 0; }
-  .lens-q .ord { font-family: var(--display); font-size: 14px; color: var(--teal); letter-spacing: 0.04em; margin-bottom: 6px; }
-  .lens-q h4 { font-family: var(--display); font-weight: 500; font-size: 19px; margin-bottom: 6px; }
-  .lens-q p { font-size: 16px; color: var(--ink-soft); margin: 0; line-height: 1.5; }
-  .weight { font-family: var(--body); font-size: 13px; color: var(--ink-faint); float: right; }
+  .nav-link {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 400;
+    color: #0E1B2C;
+    transition: color .2s ease;
+  }
+  .nav-link::after {
+    content: attr(data-text);
+    font-weight: 600;
+    height: 0;
+    visibility: hidden;
+    overflow: hidden;
+    user-select: none;
+    pointer-events: none;
+    display: block;
+  }
+  .nav-link:hover { font-weight: 600; color: #0E1B2C; }
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0; right: 0;
+    height: 1.5px;
+    background: #0E1B2C;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .22s ease;
+  }
+  .nav-link:hover::before { transform: scaleX(1); }
 
-  /* evidence log */
-  .legend { display: flex; gap: 22px; flex-wrap: wrap; margin: 24px 0 8px; font-family: var(--body); font-size: 14px; }
-  .legend span { display: inline-flex; align-items: center; gap: 7px; color: var(--ink-soft); }
-  .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
-  .dot.in { background: var(--teal); }
-  .dot.inc { background: var(--amber); }
-  .ev { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin: 18px 0; background: var(--card); }
-  .ev .head { padding: 18px 22px 16px; border-left: 5px solid var(--teal); }
-  .ev.incoming .head { border-left-color: var(--amber); }
-  .ev .as-label { font-family: var(--body); font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 5px; }
-  .ev .as { font-family: var(--display); font-weight: 500; font-size: 19px; line-height: 1.28; }
-  .ev .grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line-soft); }
-  .ev .cell { padding: 16px 22px; }
-  .ev .cell:first-child { border-right: 1px solid var(--line-soft); }
-  .ev .cell .lbl { font-family: var(--body); font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
-  .ev.incoming .cell .lbl { color: var(--amber); }
-  .ev .cell p { font-size: 15.5px; color: var(--ink-soft); margin: 0; line-height: 1.5; }
-  .ev .changed { padding: 15px 22px; background: var(--paper-2); border-top: 1px solid var(--line-soft); }
-  .ev .changed .lbl { font-family: var(--body); font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--coral); margin-bottom: 5px; }
-  .ev .changed p { font-size: 15.5px; color: var(--ink); margin: 0; line-height: 1.5; }
+  /* ─── Buttons ──────────────────────────────────────────────── */
+  .btn {
+    display: inline-flex; align-items: center; gap: .6rem;
+    padding: 12px 20px;
+    font-size: 14px; font-weight: 500;
+    border-radius: 999px;
+    transition: all .2s ease;
+    text-decoration: none;
+  }
+  .btn-primary { background: #0E1B2C; color: #F6F3EB; }
+  .btn-primary:hover { background: #2E4FA8; }
+  .btn-ghost { border: 1px solid #2A3A52; color: #0E1B2C; }
+  .btn-ghost:hover { background: #0E1B2C; color: #F6F3EB; }
+  .btn .arr { transition: transform .2s ease; }
+  .btn:hover .arr { transform: translateX(3px); }
 
-  /* flow */
-  .flow { margin-top: 28px; }
-  .step { display: grid; grid-template-columns: 64px 1fr; gap: 18px; padding: 18px 0; border-top: 1px solid var(--line-soft); align-items: start; }
-  .step:first-child { border-top: none; }
-  .step .si { font-family: var(--display); font-weight: 600; font-size: 14px; color: var(--teal); border: 1.5px solid var(--teal-soft); border-radius: 8px; padding: 8px 0; text-align: center; }
-  .step h4 { font-family: var(--display); font-weight: 500; font-size: 19px; margin-bottom: 4px; }
-  .step p { font-size: 16px; color: var(--ink-soft); margin: 0; line-height: 1.5; }
-  .step .why { font-size: 14.5px; color: var(--ink-faint); font-style: italic; margin-top: 4px; }
+  /* ─── Reveal ───────────────────────────────────────────────── */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .rise > * { animation: rise .8s cubic-bezier(.2,.7,.2,1) both; }
+  .rise > *:nth-child(1) { animation-delay: .05s; }
+  .rise > *:nth-child(2) { animation-delay: .15s; }
+  .rise > *:nth-child(3) { animation-delay: .25s; }
+  .rise > *:nth-child(4) { animation-delay: .35s; }
+  .rise > *:nth-child(5) { animation-delay: .45s; }
+  .rise > *:nth-child(6) { animation-delay: .55s; }
 
-  /* features */
-  .feat-group { margin: 22px 0; }
-  .feat-group .gt { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
-  .feat-group .gt h4 { font-family: var(--display); font-weight: 500; font-size: 20px; }
-  .feat-group .gt .badge { font-family: var(--body); font-size: 12px; padding: 3px 11px; border-radius: 20px; }
-  .b-carry { background: var(--teal-bg); color: var(--teal); }
-  .b-redesign { background: var(--amber-bg); color: var(--amber); }
-  .b-new { background: var(--purple-bg); color: var(--purple); }
-  .feat-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; }
-  .feat-list .f { font-size: 16px; color: var(--ink-soft); padding: 7px 0 7px 20px; position: relative; line-height: 1.4; border-bottom: 1px solid var(--line-soft); }
-  .feat-list .f::before { content: ''; position: absolute; left: 2px; top: 15px; width: 7px; height: 7px; border-radius: 50%; background: var(--teal-soft); }
-  .feat-group.redesign .f::before { background: #ef9f27; }
-  .feat-group.new .f::before { background: #7f77dd; }
-  .feat-list .f b { font-weight: 500; color: var(--ink); display: block; }
+  /* ─── Eyebrow ──────────────────────────────────────────────── */
+  .eyebrow { display: inline-flex; align-items: center; gap: 10px; }
+  .eyebrow::before {
+    content: ""; display: inline-block;
+    width: 22px; height: 1px; background: #B8C4DD;
+  }
 
-  /* scenarios */
-  .scene { margin: 40px 0; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--card); }
-  .scene .banner { padding: 26px 28px 22px; color: #fff; }
-  .scene.a .banner { background: linear-gradient(135deg, #0f6e56, #1d9e75); }
-  .scene.b .banner { background: linear-gradient(135deg, #185fa5, #378add); }
-  .scene.c .banner { background: linear-gradient(135deg, #993c1d, #d85a30); }
-  .scene .banner .label { font-family: var(--body); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85; margin-bottom: 10px; }
-  .scene .banner h3 { font-family: var(--display); font-weight: 500; font-size: 27px; line-height: 1.15; margin: 0; color: #fff; }
-  .scene .banner .sub { font-size: 16px; opacity: 0.9; margin-top: 8px; }
-  .panels { padding: 8px 28px 24px; }
-  .panel { display: grid; grid-template-columns: 108px 1fr; gap: 20px; padding: 20px 0; border-top: 1px solid var(--line-soft); align-items: center; }
-  .panel:first-child { border-top: none; }
-  .panel .art { width: 108px; height: 92px; border-radius: 10px; overflow: hidden; }
-  .panel .art svg { width: 100%; height: 100%; display: block; }
-  .panel .txt { }
-  .panel .pn { font-family: var(--display); font-weight: 600; font-size: 13px; color: var(--ink-faint); margin-bottom: 4px; }
-  .panel .txt p { font-size: 17px; margin: 0; line-height: 1.5; color: var(--ink); }
+  /* ─── Cards ────────────────────────────────────────────────── */
+  .civic-card {
+    background: #FFFFFF;
+    border: 1px solid #E2DDD8;
+    border-top: 3px solid #2E4FA8;
+    transition: border-color .25s ease, transform .25s ease, background .25s ease, box-shadow .25s ease;
+  }
+  .civic-card:hover {
+    border-color: #B8C4DD;
+    border-top-color: #2E4FA8;
+    background: #F4F6FC;
+    box-shadow: 0 6px 24px -16px rgba(46,79,168,0.25);
+  }
 
-  /* open questions */
-  .oq { display: grid; gap: 12px; margin-top: 24px; }
-  .oq .q { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--purple); border-radius: 10px; padding: 16px 20px; }
-  .oq .q h4 { font-family: var(--display); font-weight: 500; font-size: 18px; margin-bottom: 4px; }
-  .oq .q p { font-size: 15.5px; color: var(--ink-soft); margin: 0; line-height: 1.45; }
+  /* ─── Tags / pills ─────────────────────────────────────────── */
+  .pill {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 999px;
+    background: #EDE9DD; color: #2A3A52; border: 1px solid #D8D3C4;
+  }
+  .pill::before { content: ""; width: 5px; height: 5px; border-radius: 999px; background: currentColor; opacity:.9; }
+  .pill.argued   { background: #e1f5ee; color: #0f6e56; border-color: #5dcaa5; }
+  .pill.evidenced{ background: #E8EEFB; color: #2E4FA8; border-color: #B8C4DD; }
+  .pill.partial  { background: #faeeda; color: #854f0b; border-color: #f0c070; }
+  .pill.assumption{ background: #faece7; color: #993c1d; border-color: #e0a090; }
+  .pill.future   { background: #eeedfe; color: #3c3489; border-color: #b0a8dd; }
 
-  footer { padding: 50px 0 70px; }
-  footer p { font-family: var(--body); font-size: 13.5px; color: var(--ink-faint); margin: 0; }
+  /* ─── Evidence cards ───────────────────────────────────────── */
+  .ev-card {
+    background: #FFFFFF;
+    border: 1px solid #E2DDD8;
+    border-left: 4px solid #2E4FA8;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 18px 0;
+  }
+  .ev-card.incoming { border-left-color: #ef9f27; }
+  .ev-card .ev-head { padding: 20px 24px 16px; }
+  .ev-card .ev-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #6B7280; margin-bottom: 6px;
+  }
+  .ev-card .ev-claim {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: "opsz" 72, "SOFT" 30;
+    font-size: 18px; line-height: 1.3; font-weight: 400;
+  }
+  .ev-card .ev-body {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-top: 1px solid #E8E3D3;
+  }
+  .ev-card .ev-cell { padding: 16px 24px; }
+  .ev-card .ev-cell:first-child { border-right: 1px solid #E8E3D3; }
+  .ev-card .ev-cell .cell-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #2E4FA8; margin-bottom: 8px;
+  }
+  .ev-card.incoming .ev-cell .cell-label { color: #854f0b; }
+  .ev-card .ev-cell p { font-size: 14px; color: #2A3A52; line-height: 1.55; margin: 0; }
+  .ev-card .ev-changed {
+    padding: 14px 24px;
+    background: #F5F3F0;
+    border-top: 1px solid #E8E3D3;
+  }
+  .ev-card .ev-changed .cell-label { color: #993c1d; }
+  .ev-card .ev-changed p { font-size: 14px; color: #0E1B2C; line-height: 1.55; margin: 0; }
 
+  /* ─── Step flow ────────────────────────────────────────────── */
+  .step-item {
+    display: grid; grid-template-columns: 72px 1fr;
+    gap: 20px; padding: 20px 0;
+    border-top: 1px solid #E8E3D3; align-items: start;
+  }
+  .step-item:first-child { border-top: none; }
+  .step-icon {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #2E4FA8; border: 1.5px solid #B8C4DD;
+    border-radius: 8px; padding: 10px 4px; text-align: center;
+    line-height: 1.3;
+  }
+  .step-item h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: "opsz" 72, "SOFT" 30;
+    font-size: 18px; font-weight: 400; margin-bottom: 4px;
+  }
+  .step-item p { font-size: 14px; color: #2A3A52; margin: 0; line-height: 1.55; }
+  .step-item .step-why { font-size: 13px; color: #6B7280; font-style: italic; margin-top: 5px; }
+
+  /* ─── Feature groups ───────────────────────────────────────── */
+  .feat-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 999px; border: 1px solid;
+  }
+  .feat-badge.carry     { background: #e1f5ee; color: #0f6e56; border-color: #5dcaa5; }
+  .feat-badge.redesign  { background: #faeeda; color: #854f0b; border-color: #f0c070; }
+  .feat-badge.new-feat  { background: #eeedfe; color: #3c3489; border-color: #b0a8dd; }
+
+  .feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+  .feat-item {
+    background: #FFFFFF;
+    border: 1px solid #E2DDD8;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 13.5px; color: #2A3A52; line-height: 1.5;
+  }
+  .feat-item b { display: block; font-weight: 600; color: #0E1B2C; margin-bottom: 3px; font-size: 13.5px; }
+  .feat-group-carry  .feat-item { border-left: 3px solid #5dcaa5; }
+  .feat-group-redesign .feat-item { border-left: 3px solid #ef9f27; }
+  .feat-group-new    .feat-item { border-left: 3px solid #7f77dd; }
+
+  /* ─── Investor lens cards ──────────────────────────────────── */
+  .lens-card {
+    background: #FFFFFF;
+    border: 1px solid #E2DDD8;
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin: 12px 0;
+  }
+  .lens-ord {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #6B7280; margin-bottom: 8px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .lens-ord .weight {
+    font-size: 10px; font-style: normal;
+    color: #2E4FA8; letter-spacing: 0.08em;
+  }
+  .lens-card h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: "opsz" 72, "SOFT" 30;
+    font-size: 18px; font-weight: 400; margin-bottom: 6px;
+  }
+  .lens-card p { font-size: 14px; color: #2A3A52; line-height: 1.55; margin: 0; }
+
+  /* ─── Pull quote ───────────────────────────────────────────── */
+  .pull-quote {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-variation-settings: "opsz" 72, "SOFT" 80;
+    font-size: 22px; line-height: 1.4; color: #2E4FA8;
+    margin: 32px 0; padding-left: 24px;
+    border-left: 2px solid #B8C4DD;
+  }
+
+  /* ─── Arguments ────────────────────────────────────────────── */
+  .arg-item {
+    display: grid; grid-template-columns: 44px 1fr;
+    gap: 16px; padding: 20px 0;
+    border-top: 1px solid #E8E3D3; align-items: start;
+  }
+  .arg-item:first-child { border-top: none; }
+  .arg-num {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: "opsz" 72, "SOFT" 30;
+    font-size: 26px; font-weight: 400; color: #B8C4DD;
+    line-height: 1; padding-top: 2px;
+  }
+  .arg-item h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: "opsz" 72, "SOFT" 30;
+    font-size: 17px; font-weight: 400; margin-bottom: 6px; line-height: 1.3;
+  }
+  .arg-item p { font-size: 14px; color: #2A3A52; margin: 0; line-height: 1.55; }
+
+  /* ─── Scenario / scene cards ───────────────────────────────── */
+  .scene-card {
+    border: 1px solid #E2DDD8;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 24px 0;
+    background: #FFFFFF;
+  }
+  .scene-banner { padding: 28px 32px 24px; color: #fff; }
+  .scene-a .scene-banner { background: linear-gradient(135deg, #0f6e56, #1d9e75); }
+  .scene-b .scene-banner { background: linear-gradient(135deg, #185fa5, #378add); }
+  .scene-c .scene-banner { background: linear-gradient(135deg, #993c1d, #d85a30); }
+  .scene-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    opacity: 0.8; margin-bottom: 10px;
+  }
+  .scene-banner h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: "opsz" 72, "SOFT" 30;
+    font-size: 26px; font-weight: 400; line-height: 1.2; color: #fff; margin: 0;
+  }
+  .scene-banner .scene-sub { font-size: 15px; opacity: 0.9; margin-top: 8px; }
+  .scene-panels { padding: 8px 32px 24px; }
+  .scene-panel {
+    display: grid; grid-template-columns: 108px 1fr;
+    gap: 20px; padding: 20px 0;
+    border-top: 1px solid #E8E3D3; align-items: center;
+  }
+  .scene-panel:first-child { border-top: none; }
+  .scene-panel .panel-art { width: 108px; height: 92px; border-radius: 8px; overflow: hidden; }
+  .scene-panel .panel-art svg { width: 100%; height: 100%; display: block; }
+  .panel-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; letter-spacing: 0.1em;
+    color: #6B7280; margin-bottom: 5px;
+  }
+  .scene-panel p { font-size: 14px; margin: 0; line-height: 1.55; color: #0E1B2C; }
+
+  /* ─── Open questions ───────────────────────────────────────── */
+  .oq-item {
+    background: #FFFFFF;
+    border: 1px solid #E2DDD8;
+    border-left: 4px solid #6E5C9C;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 10px 0;
+  }
+  .oq-item h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: "opsz" 72, "SOFT" 30;
+    font-size: 17px; font-weight: 400; margin-bottom: 4px;
+  }
+  .oq-item p { font-size: 14px; color: #2A3A52; margin: 0; line-height: 1.5; }
+
+  /* ─── Legend ───────────────────────────────────────────────── */
+  .legend { display: flex; gap: 20px; flex-wrap: wrap; margin: 20px 0 8px; }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: #2A3A52; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .dot-in  { background: #2E4FA8; }
+  .dot-inc { background: #ef9f27; }
+
+  /* ─── Meta row ─────────────────────────────────────────────── */
+  .meta-item { }
+  .meta-item .meta-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #6B7280;
+  }
+  .meta-item .meta-val {
+    font-size: 15px; font-weight: 500; color: #0E1B2C;
+    margin-top: 3px; white-space: nowrap;
+  }
+
+  /* ─── Section divider ──────────────────────────────────────── */
+  .sec-divider { border-top: 1px solid #D8D3C4; }
+
+  /* ─── Responsive ───────────────────────────────────────────── */
   @media (max-width: 640px) {
-    h1 { font-size: 38px; }
-    h2 { font-size: 27px; }
-    .standfirst { font-size: 19px; }
-    .ev .grid { grid-template-columns: 1fr; }
-    .ev .cell:first-child { border-right: none; border-bottom: 1px solid var(--line-soft); }
-    .feat-list { grid-template-columns: 1fr; }
-    .panel { grid-template-columns: 76px 1fr; gap: 14px; }
-    .panel .art { width: 76px; height: 64px; }
-    .step { grid-template-columns: 56px 1fr; gap: 12px; }
-    nav .brand { width: 100%; margin-bottom: 4px; }
+    .ev-card .ev-body { grid-template-columns: 1fr; }
+    .ev-card .ev-cell:first-child { border-right: none; border-bottom: 1px solid #E8E3D3; }
+    .feat-grid { grid-template-columns: 1fr; }
+    .scene-panel { grid-template-columns: 76px 1fr; gap: 14px; }
+    .scene-panel .panel-art { width: 76px; height: 64px; }
+    .step-item { grid-template-columns: 58px 1fr; gap: 12px; }
+  }
+
+  /* ─── Reduced motion ────────────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .rise > * { animation: none; }
   }
 </style>
 </head>
-<body>
+<body class="grain antialiased">
 
-<nav>
-  <div class="wrap">
-    <span class="brand">Civic Ledger</span>
-    <a href="#about">The claim</a>
-    <a href="#arguments">Arguments</a>
-    <a href="#investors">Investor lens</a>
-    <a href="#evidence">Evidence</a>
-    <a href="#flow">System flow</a>
-    <a href="#features">June build</a>
-    <a href="#scenarios">Scenarios</a>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap">
-    <div class="kicker">Berlin gathering · preparation</div>
-    <h1>Permission is the <em>operating system</em> of the city.</h1>
-    <p class="standfirst">A working brief for the Berlin week: what we are building, what we have learned, and what the evidence shows so far.</p>
-    <div class="meta-row">
-      <div>Prepared for<strong>The business model gathering</strong></div>
-      <div>When<strong>21–25 July 2026</strong></div>
-      <div>Where<strong>Berlin</strong></div>
-      <div>Status<strong>Living draft</strong></div>
-    </div>
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<header class="sticky top-0 z-50 nav-blur">
+  <div class="max-w-page mx-auto px-6 md:px-10 h-[64px] flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="3" stroke="#0E1B2C" stroke-width="1.4"/>
+        <path d="M6 9h12M6 13h8M6 17h10" stroke="#0E1B2C" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <span class="display-sm text-[20px] tracking-tight text-ink font-semibold">Civic Ledger</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-[13.5px]">
+      <a class="nav-link" data-text="The claim"     href="#about">The claim</a>
+      <a class="nav-link" data-text="Arguments"     href="#arguments">Arguments</a>
+      <a class="nav-link" data-text="Investor lens" href="#investors">Investor lens</a>
+      <a class="nav-link" data-text="Evidence"      href="#evidence">Evidence</a>
+      <a class="nav-link" data-text="System flow"   href="#flow">System flow</a>
+      <a class="nav-link" data-text="June build"    href="#features">June build</a>
+      <a class="nav-link" data-text="Scenarios"     href="#scenarios">Scenarios</a>
+      <a class="nav-link" data-text="The gathering" href="#gathering">The gathering</a>
+    </nav>
   </div>
 </header>
 
-<section id="about">
-  <div class="wrap">
-    <div class="sec-num">01 · The underlying claim</div>
-    <h2>What this work is actually about</h2>
-    <p class="lead">Cities make decisions every day about what is allowed and what is not. A market in a car park. A shared meal in an empty shop. A night of music in a courtyard. Each one needs permission. Most of the time the answer is no, not because the thing is harmful, but because it does not fit the box.</p>
-    <p>Permission is not a small bureaucratic step. It is the operating system of the city. It decides what is possible before anything else can begin. Every policy, every service, every attempt to make a city more alive runs into the question of whether the permission structure will allow it. Change that structure, and you change what a city can do.</p>
-    <p class="pull">Power is the ability to shape a shared future together. Negotiation is how we get there. And what makes a commitment real is that something was given up to make it.</p>
-    <p>A booking is not a commitment. A conditional agreement reached through negotiation, trade-offs, and the backing of neighbours is. That difference is the whole point. Civic Ledger is not a booking platform. It is a new way for a city to run, one where people negotiate, commit, and shape the places they share.</p>
-  </div>
-</section>
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section id="top" class="relative">
+  <div class="max-w-page mx-auto px-6 md:px-10 pt-16 md:pt-24 pb-16 md:pb-20 rise">
+    <div class="mono-label text-mute eyebrow">Berlin gathering · preparation</div>
 
-<section id="arguments">
-  <div class="wrap">
-    <div class="sec-num">02 · Core arguments</div>
-    <h2>Eleven things we hold to be true</h2>
-    <p class="lead">Some of these are well evidenced. Some are tested but not yet written up. Some are still assumptions we need the living lab to confirm. The tags say which is which, honestly.</p>
-    <div class="args">
-      <div class="arg"><div class="n">1</div><div><h4>Permission is the operating system of the city <span class="tag t-ev">Argued</span></h4><p>Not an add-on. The layer that decides what is possible. Every policy or tool introduced into a city is held back by what the permission structure allows.</p></div></div>
-      <div class="arg"><div class="n">2</div><div><h4>Today's systems record the answer, not the reasoning <span class="tag t-ev">Evidenced</span></h4><p>A yes or a no is logged. The conditions, the worries, the context all vanish. The next similar request starts from nothing. The city cannot learn from itself.</p></div></div>
-      <div class="arg"><div class="n">3</div><div><h4>Discretion without clear rules breeds inconsistency <span class="tag t-ev">Evidenced</span></h4><p>When the rules do not cover a case, the officer picks the safe answer. The same proposal gets a different result depending on who handles it and when.</p></div></div>
-      <div class="arg"><div class="n">4</div><div><h4>New uses are stopped before anyone tests if they work <span class="tag t-ev">Evidenced</span></h4><p>Activities that do not fit a category are treated as exceptions. Community-led, temporary, and mixed uses are halted, not because they are risky, but because they are unclassified.</p></div></div>
-      <div class="arg"><div class="n">5</div><div><h4>Technology laid over a broken structure does not fix it <span class="tag t-ev">Argued</span></h4><p>Cities have added digital tools for decades. The way decisions get made underneath barely changed. The problem was never a shortage of technology.</p></div></div>
-      <div class="arg"><div class="n">6</div><div><h4>The shift is from "is this allowed?" to "what would make this possible?" <span class="tag t-part">Partly tested</span></h4><p>Conditional agreements instead of a flat yes or no. Conditions that are specific, open to change, and written down. The question moves from gatekeeping to designing access together.</p></div></div>
-      <div class="arg"><div class="n">7</div><div><h4>A commitment is real because something was given up to make it <span class="tag t-as">Core claim</span></h4><p>A confirmation is not a commitment. An agreement reached through negotiation, trade-offs, and a neighbour's backing is. This is what sets Civic Ledger apart from any tool that simply hands out approvals.</p></div></div>
-      <div class="arg"><div class="n">8</div><div><h4>The system flow is a cycle, not a procedure <span class="tag t-part">Partly tested</span></h4><p>Six steps, from intent to learning, that are not a fixed line. Each case feeds back into the next. The system learns from every decision it helps make.</p></div></div>
-      <div class="arg"><div class="n">9</div><div><h4>Trust and learning build up over time <span class="tag t-as">Assumption</span></h4><p>Reputation, a record of care, the backing of peers: these add up and lower the friction next time. Rules change through use, not through a rewrite by administrators. The longer it runs, the more useful it gets.</p></div></div>
-      <div class="arg"><div class="n">10</div><div><h4>Risk can be shared and lowered, not just judged <span class="tag t-part">Partly tested</span></h4><p>A proposer can reduce risk by adjusting their own plan or by drawing on community support. What risk is left becomes a small surcharge that funds local resilience. Risk is a material to work with, not only a filter.</p></div></div>
-      <div class="arg"><div class="n">11</div><div><h4>This is built to be adopted, not just used <span class="tag t-fut">Future claim</span></h4><p>Cities can adapt, fork, and extend it. The aim is shared infrastructure for civic decisions that any town can build on, not a single product owned by one company.</p></div></div>
-    </div>
-  </div>
-</section>
+    <h1 class="display text-[44px] sm:text-[64px] md:text-[88px] mt-6 max-w-[20ch]">
+      Permission is the <em>operating system</em> of the city.
+    </h1>
 
-<section id="investors">
-  <div class="wrap">
-    <div class="sec-num">03 · The investor lens</div>
-    <h2>What civic tech funders are looking for</h2>
-    <p class="lead">Funders backing this kind of infrastructure are not asking whether the idea is good. They have seen good ideas. They are asking whether it works with real people in real places, whether the team knows what broke and why, and whether the system is learning fast enough to scale.</p>
-    <p>From the conversation with Caine on 28 May 2026: roughly a fifth of what an investor needs is the problem and the solution. The other three fifths is evidence that the platform works and will grow. That evidence is not in the blogs yet. This is where we start building it.</p>
-    <div class="lens-q">
-      <div class="ord">Question one <span class="weight">highest weight</span></div>
-      <h4>Does real demand exist?</h4>
-      <p>Not "cities need this." Instead: of the spaces registered in Incheon, how many got a proposal in the first four weeks? Did anyone come back to propose a second time?</p>
-    </div>
-    <div class="lens-q">
-      <div class="ord">Question two</div>
-      <h4>Does it work as designed?</h4>
-      <p>Can each role, the space owner, the organiser, the peer group, the participant, finish their task without help? Where do people stop? Where do they ask what to do next?</p>
-    </div>
-    <div class="lens-q">
-      <div class="ord">Question three <span class="weight">hardest, most important</span></div>
-      <h4>What did you learn, and what did you change?</h4>
-      <p>Not what the platform does. What the team found out by building and testing it, and what they rebuilt because of what they found.</p>
-    </div>
-    <div class="lens-q">
-      <div class="ord">Question four</div>
-      <h4>Does it hold across different places?</h4>
-      <p>The living lab runs across three different districts in Incheon. Where does behaviour line up? Where does it differ? What lines up is the transferable core.</p>
-    </div>
-    <div class="lens-q">
-      <div class="ord">Question five</div>
-      <h4>Is there a human story?</h4>
-      <p>One organiser. One space owner. One person from the city. What did this make possible that would not have happened otherwise?</p>
-    </div>
-  </div>
-</section>
+    <div class="mt-10 grid md:grid-cols-12 gap-8 md:gap-12 items-start">
+      <div class="md:col-span-7">
+        <p class="text-[15px] leading-[1.6] text-ink-soft max-w-[58ch]">
+          A working brief for the Berlin week: what we are building, what we have learned, and what the evidence shows so far.
+        </p>
 
-<section id="evidence">
-  <div class="wrap">
-    <div class="sec-num">04 · Assumptions and evidence</div>
-    <h2>What we assumed, what broke, what changed</h2>
-    <p class="lead">The team expected to iterate. Here is what actually changed. Commitments are living decision premises: we made them, we tested them, and we renegotiated them as we learned.</p>
-    <div class="legend">
-      <span><span class="dot in"></span> In hand: documented in sprint records and meeting notes</span>
-      <span><span class="dot inc"></span> Incoming: from the living lab, June to August 2026</span>
-    </div>
-
-    <div class="ev">
-      <div class="head"><div class="as-label">Assumption 01</div><div class="as">Four fixed roles map cleanly onto how people use the system.</div></div>
-      <div class="grid">
-        <div class="cell"><div class="lbl">How we tested</div><p>Sprint 1 space registration, Sprint 2 deliberation flow, and the usability test with nine people in May 2026.</p></div>
-        <div class="cell"><div class="lbl">What we found</div><p>Roles are not fixed. People move between them across a project. The peer group was doing coordination work we had not designed for. The system is really about many roles working together, not single actions.</p></div>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#flow" class="btn btn-primary">View the system flow <span class="arr">→</span></a>
+          <a href="#scenarios" class="btn btn-ghost">Read the scenarios <span class="arr">→</span></a>
+        </div>
       </div>
-      <div class="changed"><div class="lbl">What changed</div><p>Role design is being reworked. The English version needs dynamic role swapping, not static assignment. This is feature one on the redesign list.</p></div>
-    </div>
 
-    <div class="ev">
-      <div class="head"><div class="as-label">Assumption 02</div><div class="as">The AI can offer genuinely creative compromise options when a proposal needs negotiation.</div></div>
-      <div class="grid">
-        <div class="cell"><div class="lbl">How we tested</div><p>Sprint 2 deliberation flow, built with an AI company partner over several weeks.</p></div>
-        <div class="cell"><div class="lbl">What we found</div><p>The AI kept suggesting answers that fit the existing rules. It nudged people back toward what was already allowed, rather than helping them find new ground. We had no reference data for what an imaginative compromise looks like.</p></div>
-      </div>
-      <div class="changed"><div class="lbl">What changed</div><p>This is a known open problem. The compromise engine needs a different training approach, possibly the knowledge-graph wiki Gerdin is building. Flagged for the English version.</p></div>
-    </div>
-
-    <div class="ev">
-      <div class="head"><div class="as-label">Assumption 03</div><div class="as">A free-flowing conversational interface is the right way to handle proposals.</div></div>
-      <div class="grid">
-        <div class="cell"><div class="lbl">How we tested</div><p>Contracted an AI company to build it. January 2026.</p></div>
-        <div class="cell"><div class="lbl">What we found</div><p>The company could not deliver. Free-flow conversation needed training data that did not exist. We moved to a form: people fill in their excitement, concern, and suggestion, and the AI sums it up.</p></div>
-      </div>
-      <div class="changed"><div class="lbl">What changed</div><p>The interface became form-based. The decision logic underneath, risk scoring and conditional agreement, stayed the same. We treat the form as an interim step, not the final design.</p></div>
-    </div>
-
-    <div class="ev">
-      <div class="head"><div class="as-label">Assumption 04</div><div class="as">Bigger discounts for higher-reputation users is the right payment model.</div></div>
-      <div class="grid">
-        <div class="cell"><div class="lbl">How we tested</div><p>Sprint 2 payment model design, late 2025.</p></div>
-        <div class="cell"><div class="lbl">What we found</div><p>Large reputation discounts meant almost no money came into the platform. It was not sustainable. It also risked turning the system into a game where people chase badges instead of caring for places.</p></div>
-      </div>
-      <div class="changed"><div class="lbl">What changed</div><p>Two parts now: a small reputation discount of 1 to 3 percent, and a risk surcharge of 0 to 5 percent. Leftover risk funds a community pool and a risk pool. More use means more capacity to manage risk, not just a lower price.</p></div>
-    </div>
-
-    <div class="ev">
-      <div class="head"><div class="as-label">Assumption 05</div><div class="as">People will feel deliberation as meaningful, not as a chore.</div></div>
-      <div class="grid">
-        <div class="cell"><div class="lbl">How we tested</div><p>Sprint 2 build, internal assessment, and reflection in December 2025.</p></div>
-        <div class="cell"><div class="lbl">What we found</div><p>Strong on the page, heavy in the hand. People are used to Airbnb and Booking.com. Next to those, the deliberation step felt like a burden. The May usability test showed people warmed to it once inside, but getting them in was the friction.</p></div>
-      </div>
-      <div class="changed"><div class="lbl">What changed</div><p>This is the core design challenge for 2026. The proposed answer is a different entry point: a physical object or spatial prompt that starts from imagination, not a booking calendar. See scenario three.</p></div>
-    </div>
-
-    <div class="ev">
-      <div class="head"><div class="as-label">Assumption 06</div><div class="as">Building the risk scoring engine would be straightforward.</div></div>
-      <div class="grid">
-        <div class="cell"><div class="lbl">How we tested</div><p>Sprint 2, several weeks of design with an AI company partner.</p></div>
-        <div class="cell"><div class="lbl">What we found</div><p>Reading risk from the language of a proposal, a yoga class for five against a night market for two hundred, needed far more detailed parameter work than we expected. Five weeks just to design the baseline calculation.</p></div>
-      </div>
-      <div class="changed"><div class="lbl">What changed</div><p>We have a working engine, and a clear lesson: the technical depth of civic AI is higher than it looks. This shaped the choice to hire a product architect with an AI background.</p></div>
-    </div>
-
-    <div class="ev incoming">
-      <div class="head"><div class="as-label">Incoming · living lab</div><div class="as">What the living lab will tell us by end of July.</div></div>
-      <div class="grid">
-        <div class="cell"><div class="lbl">Being collected</div><p>Activation rate (registered spaces that get a proposal), completion rate, return rate, and at least one full case from proposal to conditional agreement.</p></div>
-        <div class="cell"><div class="lbl">Who holds it</div><p>Professor Kim's team runs the lab across three Incheon districts. A brief has been sent setting out exactly what to record as the lab runs, not after it ends.</p></div>
-      </div>
-      <div class="changed"><div class="lbl">Why it matters for Berlin</div><p>This is the demand and usability evidence funders weight most. Without it designed in from the start, neither the blog nor the gathering can do its job.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="flow">
-  <div class="wrap">
-    <div class="sec-num">05 · The system flow</div>
-    <h2>Six steps that learn</h2>
-    <p class="lead">This is not a protocol. A protocol is a fixed procedure you follow. This is a flow that learns. Each step feeds the next, and the last step feeds back to the first.</p>
-    <div class="flow">
-      <div class="step"><div class="si">01<br>Intent</div><div><h4>Intent</h4><p>A citizen, steward or organisation signals what they want to do, and why.</p><p class="why">Today's systems skip this. Intent never reaches the record.</p></div></div>
-      <div class="step"><div class="si">02<br>Proposal</div><div><h4>Proposal</h4><p>The request, written in everyday words, becomes a structured and reviewable case.</p><p class="why">The shift from application to proposal: not asking for a yes, but opening a conversation.</p></div></div>
-      <div class="step"><div class="si">03<br>Conditions</div><div><h4>Conditions</h4><p>Rules, location, timing and local context are used to weigh risk and route the case.</p><p class="why">Risk is read from context, not looked up from a category.</p></div></div>
-      <div class="step"><div class="si">04<br>Agreement</div><div><h4>Agreement</h4><p>Conditions for use are shaped through structured negotiation where needed.</p><p class="why">The commitment is earned through give and take, not simply granted.</p></div></div>
-      <div class="step"><div class="si">05<br>Proof</div><div><h4>Proof</h4><p>The agreement is recorded as a verifiable and auditable commitment.</p><p class="why">The record exists. The reasoning is kept. The city can learn from it.</p></div></div>
-      <div class="step"><div class="si">06<br>Learning</div><div><h4>Learning</h4><p>Outcomes from real use inform future rules and workflows, feeding the next request.</p><p class="why">The next request starts from a better place than this one did.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="features">
-  <div class="wrap">
-    <div class="sec-num">06 · The June build</div>
-    <h2>Features for the English prototype</h2>
-    <p class="lead">Prep for Berlin happens online: working sessions with Fang, Eunji, Koo and a UI/UX designer to build the English version, so the week itself stays free for the business model. Here is what carries over, what needs reworking, and what is new.</p>
-
-    <div class="feat-group carry">
-      <div class="gt"><h4>Carry over from Korean</h4><span class="badge b-carry">translate and adapt</span></div>
-      <div class="feat-list">
-        <div class="f"><b>Space registry</b>Register spaces with their character and rules. Fully built and documented in Sprint 1.</div>
-        <div class="f"><b>Proposal / intent pairing</b>Submit a use written in everyday language. Built across Sprints 1 and 2.</div>
-        <div class="f"><b>Rule creation and update</b>Communities and owners set and change the rules for a space.</div>
-        <div class="f"><b>Risk score engine</b>Reads risk from the proposal and routes the case. Five weeks to build; working.</div>
-        <div class="f"><b>ECS deliberation</b>Excitement, concern, suggestion, gathered as a form for now.</div>
-        <div class="f"><b>Conditional agreement</b>Shapes a workable "yes, if" from the negotiation.</div>
-        <div class="f"><b>Payment</b>Reputation discount plus risk surcharge, feeding community and risk pools.</div>
-        <div class="f"><b>Profile / wallet</b>Tracks history, care tokens, presence tokens, and badges.</div>
-        <div class="f"><b>Relational identity</b>Trust built through real interactions over time.</div>
-        <div class="f"><b>Digital key</b>Time-bounded access once permission is granted, by QR or token.</div>
-      </div>
-    </div>
-
-    <div class="feat-group redesign">
-      <div class="gt"><h4>Redesign for English</h4><span class="badge b-redesign">known problems to solve</span></div>
-      <div class="feat-list">
-        <div class="f"><b>Deliberation interface</b>Decide: rebuild the conversational layer, or commit to the form. The AI company could not deliver free-flow conversation.</div>
-        <div class="f"><b>Dynamic role swapping</b>People move between roles across a project. Static role assignment does not hold. (Assumption 01.)</div>
-        <div class="f"><b>Compromise engine</b>The AI suggests rule-conforming answers, not creative ones. Needs a different approach. (Assumption 02.)</div>
-        <div class="f"><b>Impact dashboard</b>Named as a funder-facing tool but not yet built or tested. Build from scratch or descope.</div>
-      </div>
-    </div>
-
-    <div class="feat-group new">
-      <div class="gt"><h4>New for English</h4><span class="badge b-new">not in the Korean version</span></div>
-      <div class="feat-list">
-        <div class="f"><b>Context presets on profile</b>On leave, caregiving, reduced capacity. Pauses commitments without penalty. From Fang's social contract prototype.</div>
-        <div class="f"><b>Spatial imagination entry</b>An object or prompt starts the flow, not a calendar. The RMIT micro-furniture idea. (Scenario three.)</div>
-        <div class="f"><b>Newcomer on-ramp</b>A fair way in for people with no history yet. Temporary conditions that ease as care is shown. (Scenario two.)</div>
-        <div class="f"><b>Peer visibility</b>People see how others are showing up, not just their own record. Reinforces commitment.</div>
-        <div class="f"><b>LLM wiki for negotiation</b>A structured knowledge base to train the deliberation AI. Gerdin's knowledge-graph work.</div>
-        <div class="f"><b>Collective pool mechanics</b>How shared tokens fund community projects across spaces. Sketched in the Danube scenario; needs design.</div>
+      <div class="md:col-span-5">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="meta-item">
+            <div class="meta-label">Prepared for</div>
+            <div class="meta-val">The business model gathering</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">When</div>
+            <div class="meta-val">21–25 July 2026</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Where</div>
+            <div class="meta-val">Berlin</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Status</div>
+            <div class="meta-val">Living draft</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="scenarios">
-  <div class="wrap">
-    <div class="sec-num">07 · Three futures</div>
-    <h2>What this could become</h2>
-    <p class="lead">Three short scenarios. They are not predictions. They show where the work points, and they double as design briefs for the English version. Each one is someone giving something up to make a commitment real.</p>
+<!-- ============================================================
+     01 · THE UNDERLYING CLAIM
+     ============================================================ -->
+<section id="about" class="sec-divider">
+  <div class="max-w-page mx-auto px-6 md:px-10 py-16 md:py-20">
+    <div class="mono-label text-mute eyebrow mb-4">01 · The underlying claim</div>
+    <h2 class="display-sm text-[32px] md:text-[42px] mt-2 mb-6">What this work is actually about</h2>
 
-    <div class="scene a">
-      <div class="banner">
-        <div class="label">Scenario one · more-than-human permissioning</div>
+    <div class="grid md:grid-cols-12 gap-8 md:gap-16">
+      <div class="md:col-span-8">
+        <p class="text-[15px] md:text-[16px] leading-[1.65] text-ink-soft mb-5">Cities make decisions every day about what is allowed and what is not. A market in a car park. A shared meal in an empty shop. A night of music in a courtyard. Each one needs permission. Most of the time the answer is no, not because the thing is harmful, but because it does not fit the box.</p>
+        <p class="text-[15px] md:text-[16px] leading-[1.65] text-ink mb-5">Permission is not a small bureaucratic step. It is the operating system of the city. It decides what is possible before anything else can begin. Every policy, every service, every attempt to make a city more alive runs into the question of whether the permission structure will allow it. Change that structure, and you change what a city can do.</p>
+
+        <div class="pull-quote">Power is the ability to shape a shared future together. Negotiation is how we get there. And what makes a commitment real is that something was given up to make it.</div>
+
+        <p class="text-[15px] md:text-[16px] leading-[1.65] text-ink">A booking is not a commitment. A conditional agreement reached through negotiation, trade-offs, and the backing of neighbours is. That difference is the whole point. Civic Ledger is not a booking platform. It is a new way for a city to run, one where people negotiate, commit, and shape the places they share.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     02 · CORE ARGUMENTS
+     ============================================================ -->
+<section id="arguments" class="sec-divider bg-sand">
+  <div class="max-w-page mx-auto px-6 md:px-10 py-16 md:py-20">
+    <div class="mono-label text-mute eyebrow mb-4">02 · Core arguments</div>
+    <h2 class="display-sm text-[32px] md:text-[42px] mt-2 mb-3">Eleven things we hold to be true</h2>
+    <p class="text-[15px] leading-[1.6] text-ink-soft mb-8 max-w-[60ch]">Some of these are well evidenced. Some are tested but not yet written up. Some are still assumptions we need the living lab to confirm. The tags say which is which, honestly.</p>
+
+    <div class="max-w-[800px]">
+      <div class="arg-item">
+        <div class="arg-num">1</div>
+        <div>
+          <h4>Permission is the operating system of the city <span class="pill argued ml-2">Argued</span></h4>
+          <p>Not an add-on. The layer that decides what is possible. Every policy or tool introduced into a city is held back by what the permission structure allows.</p>
+        </div>
+      </div>
+      <div class="arg-item">
+        <div class="arg-num">2</div>
+        <div>
+          <h4>Today's systems record the answer, not the reasoning <span class="pill evidenced ml-2">Evidenced</span></h4>
+          <p>A yes or a no is logged. The conditions, the worries, the context all vanish. The next similar request starts from nothing. The city cannot learn from itself.</p>
+        </div>
+      </div>
+      <div class="arg-item">
+        <div class="arg-num">3</div>
+        <div>
+          <h4>Discretion without clear rules breeds inconsistency <span class="pill evidenced ml-2">Evidenced</span></h4>
+          <p>When the rules do not cover a case, the officer picks the safe answer. The same proposal gets a different result depending on who handles it and when.</p>
+        </div>
+      </div>
+      <div class="arg-item">
+        <div class="arg-num">4</div>
+        <div>
+          <h4>New uses are stopped before anyone tests if they work <span class="pill evidenced ml-2">Evidenced</span></h4>
+          <p>Activities that do not fit a category are treated as exceptions. Community-led, temporary, and mixed uses are halted, not because they are risky, but because they are unclassified.</p>
+        </div>
+      </div>
+      <div class="arg-item">
+        <div class="arg-num">5</div>
+        <div>
+          <h4>Technology laid over a broken structure does not fix it <span class="pill argued ml-2">Argued</span></h4>
+          <p>Cities have added digital tools for decades. The way decisions get made underneath barely changed. The problem was never a shortage of technology.</p>
+        </div>
+      </div>
+      <div class="arg-item">
+        <div class="arg-num">6</div>
+        <div>
+          <h4>The shift is from "is this allowed?" to "what would make this possible?" <span class="pill partial ml-2">Partly tested</span></h4>
+          <p>Conditional agreements instead of a flat yes or no. Conditions that are specific, open to change, and written down. The question moves from gatekeeping to designing access together.</p>
+        </div>
+      </div>
+      <div class="arg-item">
+        <div class="arg-num">7</div>
+        <div>
+          <h4>A commitment is real because something was given up to make it <span class="pill assumption ml-2">Core claim</span></h4>
+          <p>A confirmation is not a commitment. An agreement reached through negotiation, trade-offs, and a neighbour's backing is. This is what sets Civic Ledger apart from any tool that simply hands out approvals.</p>
+        </div>
+      </div>
+      <div class="arg-item">
+        <div class="arg-num">8</div>
+        <div>
+          <h4>The system flow is a cycle, not a procedure <span class="pill partial ml-2">Partly tested</span></h4>
+          <p>Six steps, from intent to learning, that are not a fixed line. Each case feeds back into the next. The system learns from every decision it helps make.</p>
+        </div>
+      </div>
+      <div class="arg-item">
+        <div class="arg-num">9</div>
+        <div>
+          <h4>Trust and learning build up over time <span class="pill assumption ml-2">Assumption</span></h4>
+          <p>Reputation, a record of care, the backing of peers: these add up and lower the friction next time. Rules change through use, not through a rewrite by administrators. The longer it runs, the more useful it gets.</p>
+        </div>
+      </div>
+      <div class="arg-item">
+        <div class="arg-num">10</div>
+        <div>
+          <h4>Risk can be shared and lowered, not just judged <span class="pill partial ml-2">Partly tested</span></h4>
+          <p>A proposer can reduce risk by adjusting their own plan or by drawing on community support. What risk is left becomes a small surcharge that funds local resilience. Risk is a material to work with, not only a filter.</p>
+        </div>
+      </div>
+      <div class="arg-item">
+        <div class="arg-num">11</div>
+        <div>
+          <h4>This is built to be adopted, not just used <span class="pill future ml-2">Future claim</span></h4>
+          <p>Cities can adapt, fork, and extend it. The aim is shared infrastructure for civic decisions that any town can build on, not a single product owned by one company.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     03 · INVESTOR LENS
+     ============================================================ -->
+<section id="investors" class="sec-divider">
+  <div class="max-w-page mx-auto px-6 md:px-10 py-16 md:py-20">
+    <div class="mono-label text-mute eyebrow mb-4">03 · The investor lens</div>
+    <h2 class="display-sm text-[32px] md:text-[42px] mt-2 mb-3">What civic tech funders are looking for</h2>
+    <p class="text-[15px] leading-[1.6] text-ink-soft mb-3 max-w-[60ch]">Funders backing this kind of infrastructure are not asking whether the idea is good. They have seen good ideas. They are asking whether it works with real people in real places, whether the team knows what broke and why, and whether the system is learning fast enough to scale.</p>
+    <p class="text-[15px] leading-[1.6] text-ink mb-8 max-w-[60ch]">From the conversation with Caine on 28 May 2026: roughly a fifth of what an investor needs is the problem and the solution. The other three fifths is evidence that the platform works and will grow. That evidence is not in the blogs yet. This is where we start building it.</p>
+
+    <div class="max-w-[720px]">
+      <div class="lens-card">
+        <div class="lens-ord">Question one <span class="weight">highest weight</span></div>
+        <h4>Does real demand exist?</h4>
+        <p>Not "cities need this." Instead: of the spaces registered in Incheon, how many got a proposal in the first four weeks? Did anyone come back to propose a second time?</p>
+      </div>
+      <div class="lens-card">
+        <div class="lens-ord">Question two</div>
+        <h4>Does it work as designed?</h4>
+        <p>Can each role, the space owner, the organiser, the peer group, the participant, finish their task without help? Where do people stop? Where do they ask what to do next?</p>
+      </div>
+      <div class="lens-card">
+        <div class="lens-ord">Question three <span class="weight">hardest, most important</span></div>
+        <h4>What did you learn, and what did you change?</h4>
+        <p>Not what the platform does. What the team found out by building and testing it, and what they rebuilt because of what they found.</p>
+      </div>
+      <div class="lens-card">
+        <div class="lens-ord">Question four</div>
+        <h4>Does it hold across different places?</h4>
+        <p>The living lab runs across three different districts in Incheon. Where does behaviour line up? Where does it differ? What lines up is the transferable core.</p>
+      </div>
+      <div class="lens-card">
+        <div class="lens-ord">Question five</div>
+        <h4>Is there a human story?</h4>
+        <p>One organiser. One space owner. One person from the city. What did this make possible that would not have happened otherwise?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     04 · EVIDENCE
+     ============================================================ -->
+<section id="evidence" class="sec-divider bg-stone">
+  <div class="max-w-page mx-auto px-6 md:px-10 py-16 md:py-20">
+    <div class="mono-label text-mute eyebrow mb-4">04 · Assumptions and evidence</div>
+    <h2 class="display-sm text-[32px] md:text-[42px] mt-2 mb-3">What we assumed, what broke, what changed</h2>
+    <p class="text-[15px] leading-[1.6] text-ink-soft mb-6 max-w-[60ch]">The team expected to iterate. Here is what actually changed. Commitments are living decision premises: we made them, we tested them, and we renegotiated them as we learned.</p>
+
+    <div class="legend mb-6">
+      <span><span class="dot dot-in"></span> In hand: documented in sprint records and meeting notes</span>
+      <span><span class="dot dot-inc"></span> Incoming: from the living lab, June to August 2026</span>
+    </div>
+
+    <div class="max-w-[800px]">
+
+      <div class="ev-card">
+        <div class="ev-head">
+          <div class="ev-label">Assumption 01</div>
+          <div class="ev-claim">Four fixed roles map cleanly onto how people use the system.</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-cell"><div class="cell-label">How we tested</div><p>Sprint 1 space registration, Sprint 2 deliberation flow, and the usability test with nine people in May 2026.</p></div>
+          <div class="ev-cell"><div class="cell-label">What we found</div><p>Roles are not fixed. People move between them across a project. The peer group was doing coordination work we had not designed for. The system is really about many roles working together, not single actions.</p></div>
+        </div>
+        <div class="ev-changed">
+          <div class="cell-label">What changed</div>
+          <p>Role design is being reworked. The English version needs dynamic role swapping, not static assignment. This is feature one on the redesign list.</p>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-head">
+          <div class="ev-label">Assumption 02</div>
+          <div class="ev-claim">The AI can offer genuinely creative compromise options when a proposal needs negotiation.</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-cell"><div class="cell-label">How we tested</div><p>Sprint 2 deliberation flow, built with an AI company partner over several weeks.</p></div>
+          <div class="ev-cell"><div class="cell-label">What we found</div><p>The AI kept suggesting answers that fit the existing rules. It nudged people back toward what was already allowed, rather than helping them find new ground. We had no reference data for what an imaginative compromise looks like.</p></div>
+        </div>
+        <div class="ev-changed">
+          <div class="cell-label">What changed</div>
+          <p>This is a known open problem. The compromise engine needs a different training approach, possibly the knowledge-graph wiki Gerdin is building. Flagged for the English version.</p>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-head">
+          <div class="ev-label">Assumption 03</div>
+          <div class="ev-claim">A free-flowing conversational interface is the right way to handle proposals.</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-cell"><div class="cell-label">How we tested</div><p>Contracted an AI company to build it. January 2026.</p></div>
+          <div class="ev-cell"><div class="cell-label">What we found</div><p>The company could not deliver. Free-flow conversation needed training data that did not exist. We moved to a form: people fill in their excitement, concern, and suggestion, and the AI sums it up.</p></div>
+        </div>
+        <div class="ev-changed">
+          <div class="cell-label">What changed</div>
+          <p>The interface became form-based. The decision logic underneath, risk scoring and conditional agreement, stayed the same. We treat the form as an interim step, not the final design.</p>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-head">
+          <div class="ev-label">Assumption 04</div>
+          <div class="ev-claim">Bigger discounts for higher-reputation users is the right payment model.</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-cell"><div class="cell-label">How we tested</div><p>Sprint 2 payment model design, late 2025.</p></div>
+          <div class="ev-cell"><div class="cell-label">What we found</div><p>Large reputation discounts meant almost no money came into the platform. It was not sustainable. It also risked turning the system into a game where people chase badges instead of caring for places.</p></div>
+        </div>
+        <div class="ev-changed">
+          <div class="cell-label">What changed</div>
+          <p>Two parts now: a small reputation discount of 1 to 3 percent, and a risk surcharge of 0 to 5 percent. Leftover risk funds a community pool and a risk pool. More use means more capacity to manage risk, not just a lower price.</p>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-head">
+          <div class="ev-label">Assumption 05</div>
+          <div class="ev-claim">People will feel deliberation as meaningful, not as a chore.</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-cell"><div class="cell-label">How we tested</div><p>Sprint 2 build, internal assessment, and reflection in December 2025.</p></div>
+          <div class="ev-cell"><div class="cell-label">What we found</div><p>Strong on the page, heavy in the hand. People are used to Airbnb and Booking.com. Next to those, the deliberation step felt like a burden. The May usability test showed people warmed to it once inside, but getting them in was the friction.</p></div>
+        </div>
+        <div class="ev-changed">
+          <div class="cell-label">What changed</div>
+          <p>This is the core design challenge for 2026. The proposed answer is a different entry point: a physical object or spatial prompt that starts from imagination, not a booking calendar. See scenario three.</p>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-head">
+          <div class="ev-label">Assumption 06</div>
+          <div class="ev-claim">Building the risk scoring engine would be straightforward.</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-cell"><div class="cell-label">How we tested</div><p>Sprint 2, several weeks of design with an AI company partner.</p></div>
+          <div class="ev-cell"><div class="cell-label">What we found</div><p>Reading risk from the language of a proposal, a yoga class for five against a night market for two hundred, needed far more detailed parameter work than we expected. Five weeks just to design the baseline calculation.</p></div>
+        </div>
+        <div class="ev-changed">
+          <div class="cell-label">What changed</div>
+          <p>We have a working engine, and a clear lesson: the technical depth of civic AI is higher than it looks. This shaped the choice to hire a product architect with an AI background.</p>
+        </div>
+      </div>
+
+      <div class="ev-card incoming">
+        <div class="ev-head">
+          <div class="ev-label">Incoming · living lab</div>
+          <div class="ev-claim">What the living lab will tell us by end of July.</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-cell"><div class="cell-label">Being collected</div><p>Activation rate (registered spaces that get a proposal), completion rate, return rate, and at least one full case from proposal to conditional agreement.</p></div>
+          <div class="ev-cell"><div class="cell-label">Who holds it</div><p>Professor Kim's team runs the lab across three Incheon districts. A brief has been sent setting out exactly what to record as the lab runs, not after it ends.</p></div>
+        </div>
+        <div class="ev-changed">
+          <div class="cell-label" style="color:#854f0b;">Why it matters for Berlin</div>
+          <p>This is the demand and usability evidence funders weight most. Without it designed in from the start, neither the blog nor the gathering can do its job.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     05 · SYSTEM FLOW
+     ============================================================ -->
+<section id="flow" class="sec-divider">
+  <div class="max-w-page mx-auto px-6 md:px-10 py-16 md:py-20">
+
+    <div class="grid md:grid-cols-12 gap-10 md:gap-12 items-start">
+      <div class="md:col-span-7">
+        <div class="mono-label text-mute eyebrow mb-4">05 · The system flow</div>
+        <h2 class="display-sm text-[32px] md:text-[42px] mt-2">Six steps that learn</h2>
+      </div>
+      <p class="md:col-span-5 md:mt-9 text-[14px] md:text-[15px] leading-relaxed text-ink-soft max-w-[55ch]">
+        This is not a protocol. A protocol is a fixed procedure you follow. This is a flow that learns. Each step feeds the next, and the last step feeds back to the first.
+      </p>
+    </div>
+
+    <!-- ─── Six steps ─────────────────────────────────────────── -->
+    <div class="mt-10">
+      <div class="mono-label text-mute mb-6">Six steps</div>
+
+      <!-- Desktop: animated circle — matching v9 protocol-circle -->
+      <div class="hidden md:block">
+        <div class="relative mx-auto" style="max-width: 540px;">
+          <svg viewBox="0 0 600 500" class="w-full h-auto" id="protocol-circle"
+               aria-label="Six-step protocol arranged as a continuous loop">
+
+            <!-- Dashed orbit ring -->
+            <circle cx="300" cy="250" r="180" fill="none"
+                    stroke="#9CA3AF" stroke-opacity="0.55"
+                    stroke-dasharray="2 7" stroke-width="1.5"/>
+
+            <!-- Centre: active step label -->
+            <g id="protocol-center" style="transition: opacity .25s ease;">
+              <text x="300" y="232" text-anchor="middle"
+                    font-family="IBM Plex Mono" font-size="11"
+                    letter-spacing="2.4" font-weight="500"
+                    fill="#2E4FA8" id="active-step-num">STEP 01</text>
+              <text x="300" y="285" text-anchor="middle"
+                    font-family="Fraunces" font-size="44" font-weight="380"
+                    letter-spacing="-0.01em"
+                    fill="#0E1B2C" id="active-step-name">Intent</text>
+            </g>
+            <text x="300" y="316" text-anchor="middle"
+                  font-family="IBM Plex Mono" font-size="9.5"
+                  letter-spacing="2.5" fill="#6B7280">CONTINUOUS LOOP</text>
+
+            <!-- Step dots — clockwise from top -->
+            <g class="circle-step is-active" data-step="0" data-num="01" data-name="Intent">
+              <circle class="halo" cx="300" cy="70"  r="22" fill="#2E4FA8" fill-opacity="0"/>
+              <circle class="dot"  cx="300" cy="70"  r="9"  fill="#F6F3EB" stroke="#2A3A52" stroke-width="1.5"/>
+              <text x="300" y="36" text-anchor="middle"
+                    font-family="IBM Plex Mono" font-size="11" letter-spacing="2" font-weight="500" fill="#2E4FA8">01</text>
+            </g>
+            <g class="circle-step" data-step="1" data-num="02" data-name="Proposal">
+              <circle class="halo" cx="456" cy="160" r="22" fill="#2E4FA8" fill-opacity="0"/>
+              <circle class="dot"  cx="456" cy="160" r="9"  fill="#F6F3EB" stroke="#2A3A52" stroke-width="1.5"/>
+              <text x="492" y="155" text-anchor="start"
+                    font-family="IBM Plex Mono" font-size="11" letter-spacing="2" font-weight="500" fill="#2E4FA8">02</text>
+            </g>
+            <g class="circle-step" data-step="2" data-num="03" data-name="Conditions">
+              <circle class="halo" cx="456" cy="340" r="22" fill="#2E4FA8" fill-opacity="0"/>
+              <circle class="dot"  cx="456" cy="340" r="9"  fill="#F6F3EB" stroke="#2A3A52" stroke-width="1.5"/>
+              <text x="492" y="349" text-anchor="start"
+                    font-family="IBM Plex Mono" font-size="11" letter-spacing="2" font-weight="500" fill="#2E4FA8">03</text>
+            </g>
+            <g class="circle-step" data-step="3" data-num="04" data-name="Agreement">
+              <circle class="halo" cx="300" cy="430" r="22" fill="#2E4FA8" fill-opacity="0"/>
+              <circle class="dot"  cx="300" cy="430" r="9"  fill="#F6F3EB" stroke="#2A3A52" stroke-width="1.5"/>
+              <text x="300" y="472" text-anchor="middle"
+                    font-family="IBM Plex Mono" font-size="11" letter-spacing="2" font-weight="500" fill="#2E4FA8">04</text>
+            </g>
+            <g class="circle-step" data-step="4" data-num="05" data-name="Proof">
+              <circle class="halo" cx="144" cy="340" r="22" fill="#2E4FA8" fill-opacity="0"/>
+              <circle class="dot"  cx="144" cy="340" r="9"  fill="#F6F3EB" stroke="#2A3A52" stroke-width="1.5"/>
+              <text x="108" y="349" text-anchor="end"
+                    font-family="IBM Plex Mono" font-size="11" letter-spacing="2" font-weight="500" fill="#2E4FA8">05</text>
+            </g>
+            <g class="circle-step" data-step="5" data-num="06" data-name="Learning">
+              <circle class="halo" cx="144" cy="160" r="22" fill="#2E4FA8" fill-opacity="0"/>
+              <circle class="dot"  cx="144" cy="160" r="9"  fill="#F6F3EB" stroke="#2A3A52" stroke-width="1.5"/>
+              <text x="108" y="155" text-anchor="end"
+                    font-family="IBM Plex Mono" font-size="11" letter-spacing="2" font-weight="500" fill="#2E4FA8">06</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Step descriptions — 3×2 grid below circle -->
+        <div class="mt-10 grid grid-cols-3 gap-x-8 gap-y-9 max-w-[880px] mx-auto">
+          <div>
+            <div class="mono-label text-accent">Step 01</div>
+            <h4 class="display-sm text-[20px] mt-2">Intent</h4>
+            <p class="mt-2 text-[14px] leading-relaxed text-ink-soft">A citizen, steward or organisation signals what they want to do, and why.</p>
+            <p class="mt-1 text-[13px] text-mute italic">Today's systems skip this. Intent never reaches the record.</p>
+          </div>
+          <div>
+            <div class="mono-label text-accent">Step 02</div>
+            <h4 class="display-sm text-[20px] mt-2">Proposal</h4>
+            <p class="mt-2 text-[14px] leading-relaxed text-ink-soft">The request, written in everyday words, becomes a structured and reviewable case.</p>
+            <p class="mt-1 text-[13px] text-mute italic">Not asking for a yes, but opening a conversation.</p>
+          </div>
+          <div>
+            <div class="mono-label text-accent">Step 03</div>
+            <h4 class="display-sm text-[20px] mt-2">Conditions</h4>
+            <p class="mt-2 text-[14px] leading-relaxed text-ink-soft">Rules, location, timing and local context are used to weigh risk and route the case.</p>
+            <p class="mt-1 text-[13px] text-mute italic">Risk is read from context, not looked up from a category.</p>
+          </div>
+          <div>
+            <div class="mono-label text-accent">Step 04</div>
+            <h4 class="display-sm text-[20px] mt-2">Agreement</h4>
+            <p class="mt-2 text-[14px] leading-relaxed text-ink-soft">Conditions for use are shaped through structured negotiation where needed.</p>
+            <p class="mt-1 text-[13px] text-mute italic">The commitment is earned through give and take, not simply granted.</p>
+          </div>
+          <div>
+            <div class="mono-label text-accent">Step 05</div>
+            <h4 class="display-sm text-[20px] mt-2">Proof</h4>
+            <p class="mt-2 text-[14px] leading-relaxed text-ink-soft">The agreement is recorded as a verifiable and auditable commitment.</p>
+            <p class="mt-1 text-[13px] text-mute italic">The record exists. The reasoning is kept. The city can learn from it.</p>
+          </div>
+          <div>
+            <div class="mono-label text-accent">Step 06</div>
+            <h4 class="display-sm text-[20px] mt-2">Learning</h4>
+            <p class="mt-2 text-[14px] leading-relaxed text-ink-soft">Outcomes from real use inform future rules and workflows, feeding the next request.</p>
+            <p class="mt-1 text-[13px] text-mute italic">The next request starts from a better place than this one did.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile: vertical timeline -->
+      <ol class="md:hidden flex flex-col gap-7 border-l hairline pl-6 mt-2">
+        <li class="relative"><span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-accent"></span>
+          <div class="mono-label text-accent">Step 01 · Intent</div>
+          <p class="mt-2 text-[14px] leading-relaxed text-ink-soft">A citizen, steward or organisation signals what they want to do, and why.</p></li>
+        <li class="relative"><span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-ink"></span>
+          <div class="mono-label text-accent">Step 02 · Proposal</div>
+          <p class="mt-2 text-[14px] leading-relaxed text-ink-soft">The request, written in everyday words, becomes a structured and reviewable case.</p></li>
+        <li class="relative"><span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-ink"></span>
+          <div class="mono-label text-accent">Step 03 · Conditions</div>
+          <p class="mt-2 text-[14px] leading-relaxed text-ink-soft">Rules, location, timing and local context are used to weigh risk and route the case.</p></li>
+        <li class="relative"><span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-ink"></span>
+          <div class="mono-label text-accent">Step 04 · Agreement</div>
+          <p class="mt-2 text-[14px] leading-relaxed text-ink-soft">Conditions for use are shaped through structured negotiation where needed.</p></li>
+        <li class="relative"><span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-ink"></span>
+          <div class="mono-label text-accent">Step 05 · Proof</div>
+          <p class="mt-2 text-[14px] leading-relaxed text-ink-soft">The agreement is recorded as a verifiable and auditable commitment.</p></li>
+        <li class="relative"><span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-ink"></span>
+          <div class="mono-label text-accent">Step 06 · Learning</div>
+          <p class="mt-2 text-[14px] leading-relaxed text-ink-soft">Outcomes from real use inform future rules and workflows, feeding the next request.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<script>
+  // ── Protocol circle: animated step rotation + trail arc (matching v9) ──
+  (function () {
+    const steps  = document.querySelectorAll('#protocol-circle .circle-step');
+    const centerG = document.getElementById('protocol-center');
+    const numEl  = document.getElementById('active-step-num');
+    const nameEl = document.getElementById('active-step-name');
+    const svg    = document.getElementById('protocol-circle');
+    if (!steps.length || !numEl || !nameEl) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Node positions (cx, cy) matching the SVG — clockwise from top
+    const nodes = [
+      {cx: 300, cy:  70},  // 01 top
+      {cx: 456, cy: 160},  // 02 upper-right
+      {cx: 456, cy: 340},  // 03 lower-right
+      {cx: 300, cy: 430},  // 04 bottom
+      {cx: 144, cy: 340},  // 05 lower-left
+      {cx: 144, cy: 160},  // 06 upper-left
+    ];
+
+    // Dot & halo transitions (matching v9 CSS)
+    const style = document.createElement('style');
+    style.textContent = `
+      #protocol-circle .circle-step .dot,
+      #protocol-circle .circle-step .halo {
+        transform-box: fill-box; transform-origin: center;
+        transition: fill .35s ease, stroke .35s ease, transform .35s ease, fill-opacity .35s ease;
+      }
+      #protocol-circle .circle-step.is-active .dot  { fill: #2E4FA8; stroke: #2E4FA8; transform: scale(1.4); }
+      #protocol-circle .circle-step.is-active .halo { fill-opacity: 0.18; transform: scale(1.05); }
+    `;
+    document.head.appendChild(style);
+
+    // Trail arc element
+    const trail = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    trail.setAttribute('fill', 'none');
+    trail.setAttribute('stroke', '#2E4FA8');
+    trail.setAttribute('stroke-width', '8');
+    trail.setAttribute('stroke-linecap', 'round');
+    trail.setAttribute('opacity', '0');
+    trail.style.transition = 'opacity 0.4s ease';
+    svg.insertBefore(trail, svg.querySelector('.circle-step'));
+
+    function arcPath(from, to) {
+      return `M ${from.cx} ${from.cy} A 180 180 0 0 1 ${to.cx} ${to.cy}`;
+    }
+
+    function showTrail(fromIdx, toIdx) {
+      trail.setAttribute('d', arcPath(nodes[fromIdx], nodes[toIdx]));
+      trail.style.opacity = '0.7';
+      setTimeout(() => { trail.style.opacity = '0'; }, 700);
+    }
+
+    let i = 0;
+    setInterval(() => {
+      if (centerG) centerG.style.opacity = '0';
+      const prev = i;
+      i = (i + 1) % steps.length;
+      showTrail(prev, i);
+      setTimeout(() => {
+        steps[prev].classList.remove('is-active');
+        steps[i].classList.add('is-active');
+        numEl.textContent  = 'STEP ' + steps[i].dataset.num;
+        nameEl.textContent = steps[i].dataset.name;
+        if (centerG) centerG.style.opacity = '1';
+      }, 250);
+    }, 2800);
+  })();
+</script>
+
+<!-- ============================================================
+     06 · FEATURES
+     ============================================================ -->
+<section id="features" class="sec-divider bg-sand">
+  <div class="max-w-page mx-auto px-6 md:px-10 py-16 md:py-20">
+    <div class="mono-label text-mute eyebrow mb-4">06 · The June build</div>
+    <h2 class="display-sm text-[32px] md:text-[42px] mt-2 mb-3">Features for the English prototype</h2>
+    <p class="text-[15px] leading-[1.6] text-ink-soft mb-10 max-w-[60ch]">Prep for Berlin happens online: working sessions with Fang, Eunji, Koo and a UI/UX designer to build the English version, so the week itself stays free for the business model. Here is what carries over, what needs reworking, and what is new.</p>
+
+    <div class="space-y-10 max-w-[900px]">
+
+      <div class="feat-group-carry">
+        <div class="flex items-center gap-3 mb-4">
+          <h3 class="display-sm text-[20px]">Carry over from Korean</h3>
+          <span class="feat-badge carry">translate and adapt</span>
+        </div>
+        <div class="feat-grid">
+          <div class="feat-item"><b>Space registry</b>Register spaces with their character and rules. Fully built and documented in Sprint 1.</div>
+          <div class="feat-item"><b>Proposal / intent pairing</b>Submit a use written in everyday language. Built across Sprints 1 and 2.</div>
+          <div class="feat-item"><b>Rule creation and update</b>Communities and owners set and change the rules for a space.</div>
+          <div class="feat-item"><b>Risk score engine</b>Reads risk from the proposal and routes the case. Five weeks to build; working.</div>
+          <div class="feat-item"><b>ECS deliberation</b>Excitement, concern, suggestion, gathered as a form for now.</div>
+          <div class="feat-item"><b>Conditional agreement</b>Shapes a workable "yes, if" from the negotiation.</div>
+          <div class="feat-item"><b>Payment</b>Reputation discount plus risk surcharge, feeding community and risk pools.</div>
+          <div class="feat-item"><b>Profile / wallet</b>Tracks history, care tokens, presence tokens, and badges.</div>
+          <div class="feat-item"><b>Relational identity</b>Trust built through real interactions over time.</div>
+          <div class="feat-item"><b>Digital key</b>Time-bounded access once permission is granted, by QR or token.</div>
+        </div>
+      </div>
+
+      <div class="feat-group-redesign">
+        <div class="flex items-center gap-3 mb-4">
+          <h3 class="display-sm text-[20px]">Redesign for English</h3>
+          <span class="feat-badge redesign">known problems to solve</span>
+        </div>
+        <div class="feat-grid">
+          <div class="feat-item"><b>Deliberation interface</b>Decide: rebuild the conversational layer, or commit to the form. The AI company could not deliver free-flow conversation.</div>
+          <div class="feat-item"><b>Dynamic role swapping</b>People move between roles across a project. Static role assignment does not hold. (Assumption 01.)</div>
+          <div class="feat-item"><b>Compromise engine</b>The AI suggests rule-conforming answers, not creative ones. Needs a different approach. (Assumption 02.)</div>
+          <div class="feat-item"><b>Impact dashboard</b>Named as a funder-facing tool but not yet built or tested. Build from scratch or descope.</div>
+        </div>
+      </div>
+
+      <div class="feat-group-new">
+        <div class="flex items-center gap-3 mb-4">
+          <h3 class="display-sm text-[20px]">New for English</h3>
+          <span class="feat-badge new-feat">not in the Korean version</span>
+        </div>
+        <div class="feat-grid">
+          <div class="feat-item"><b>Context presets on profile</b>On leave, caregiving, reduced capacity. Pauses commitments without penalty. From Fang's social contract prototype.</div>
+          <div class="feat-item"><b>Spatial imagination entry</b>An object or prompt starts the flow, not a calendar. The RMIT micro-furniture idea. (Scenario three.)</div>
+          <div class="feat-item"><b>Newcomer on-ramp</b>A fair way in for people with no history yet. Temporary conditions that ease as care is shown. (Scenario two.)</div>
+          <div class="feat-item"><b>Peer visibility</b>People see how others are showing up, not just their own record. Reinforces commitment.</div>
+          <div class="feat-item"><b>LLM wiki for negotiation</b>A structured knowledge base to train the deliberation AI. Gerdin's knowledge-graph work.</div>
+          <div class="feat-item"><b>Collective pool mechanics</b>How shared tokens fund community projects across spaces. Sketched in the Danube scenario; needs design.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     07 · SCENARIOS
+     ============================================================ -->
+<section id="scenarios" class="sec-divider">
+  <div class="max-w-page mx-auto px-6 md:px-10 py-16 md:py-20">
+    <div class="mono-label text-mute eyebrow mb-4">07 · Three futures</div>
+    <h2 class="display-sm text-[32px] md:text-[42px] mt-2 mb-3">What this could become</h2>
+    <p class="text-[15px] leading-[1.6] text-ink-soft mb-8 max-w-[60ch]">Three short scenarios. They are not predictions. They show where the work points, and they double as design briefs for the English version. Each one is someone giving something up to make a commitment real.</p>
+
+    <!-- Scenario A -->
+    <div class="scene-card scene-a">
+      <div class="scene-banner">
+        <div class="scene-label">Scenario one · more-than-human permissioning</div>
         <h3>The tree sends you an invitation</h3>
-        <div class="sub">When the city operates through invitation, not paperwork.</div>
+        <div class="scene-sub">When the city operates through invitation, not paperwork.</div>
       </div>
-      <div class="panels">
-        <div class="panel">
-          <div class="art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e1f5ee"/><path d="M54 78 L54 50" stroke="#0f6e56" stroke-width="4" stroke-linecap="round"/><circle cx="54" cy="38" r="20" fill="#5dcaa5"/><circle cx="40" cy="46" r="13" fill="#9fe1cb"/><circle cx="68" cy="46" r="13" fill="#9fe1cb"/><circle cx="40" cy="32" r="4" fill="#0f6e56"/><circle cx="66" cy="30" r="4" fill="#0f6e56"/><circle cx="54" cy="48" r="4" fill="#0f6e56"/><circle cx="40" cy="32" r="7" fill="none" stroke="#0f6e56" stroke-width="1" opacity="0.5"/><circle cx="66" cy="30" r="7" fill="none" stroke="#0f6e56" stroke-width="1" opacity="0.5"/></svg></div>
-          <div class="txt"><div class="pn">01</div><p>In the park near your home, the oldest trees carry small sensors. They read light, water, warmth, and the movement of birds.</p></div>
+      <div class="scene-panels">
+        <div class="scene-panel">
+          <div class="panel-art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e1f5ee"/><path d="M54 78 L54 50" stroke="#0f6e56" stroke-width="4" stroke-linecap="round"/><circle cx="54" cy="38" r="20" fill="#5dcaa5"/><circle cx="40" cy="46" r="13" fill="#9fe1cb"/><circle cx="68" cy="46" r="13" fill="#9fe1cb"/><circle cx="40" cy="32" r="4" fill="#0f6e56"/><circle cx="66" cy="30" r="4" fill="#0f6e56"/><circle cx="54" cy="48" r="4" fill="#0f6e56"/><circle cx="40" cy="32" r="7" fill="none" stroke="#0f6e56" stroke-width="1" opacity="0.5"/><circle cx="66" cy="30" r="7" fill="none" stroke="#0f6e56" stroke-width="1" opacity="0.5"/></svg></div>
+          <div><div class="panel-num">01</div><p>In the park near your home, the oldest trees carry small sensors. They read light, water, warmth, and the movement of birds.</p></div>
         </div>
-        <div class="panel">
-          <div class="art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e6f1fb"/><path d="M22 72 A32 32 0 0 1 86 72" fill="none" stroke="#993c1d" stroke-width="4"/><path d="M28 72 A26 26 0 0 1 80 72" fill="none" stroke="#ef9f27" stroke-width="4"/><path d="M34 72 A20 20 0 0 1 74 72" fill="none" stroke="#1d9e75" stroke-width="4"/><circle cx="84" cy="22" r="9" fill="#ef9f27"/><line x1="20" y1="20" x2="18" y2="30" stroke="#378add" stroke-width="2" stroke-linecap="round"/><line x1="30" y1="18" x2="28" y2="28" stroke="#378add" stroke-width="2" stroke-linecap="round"/></svg></div>
-          <div class="txt"><div class="pn">02</div><p>One afternoon the data lines up. Sun after rain. A rainbow forming at the right angle. Birdsong at its peak.</p></div>
+        <div class="scene-panel">
+          <div class="panel-art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e6f1fb"/><path d="M22 72 A32 32 0 0 1 86 72" fill="none" stroke="#993c1d" stroke-width="4"/><path d="M28 72 A26 26 0 0 1 80 72" fill="none" stroke="#ef9f27" stroke-width="4"/><path d="M34 72 A20 20 0 0 1 74 72" fill="none" stroke="#1d9e75" stroke-width="4"/><circle cx="84" cy="22" r="9" fill="#ef9f27"/><line x1="20" y1="20" x2="18" y2="30" stroke="#378add" stroke-width="2" stroke-linecap="round"/><line x1="30" y1="18" x2="28" y2="28" stroke="#378add" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div><div class="panel-num">02</div><p>One afternoon the data lines up. Sun after rain. A rainbow forming at the right angle. Birdsong at its peak.</p></div>
         </div>
-        <div class="panel">
-          <div class="art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e1f5ee"/><path d="M30 70 L30 52" stroke="#0f6e56" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="44" r="13" fill="#5dcaa5"/><rect x="50" y="34" width="40" height="28" rx="3" fill="#fff" stroke="#0f6e56" stroke-width="1.5"/><path d="M50 36 L70 50 L90 36" fill="none" stroke="#0f6e56" stroke-width="1.5"/><path d="M44 48 Q48 46 50 48" stroke="#0f6e56" stroke-width="1.5" fill="none"/><circle cx="46" cy="40" r="2" fill="#1d9e75"/></svg></div>
-          <div class="txt"><div class="pn">03</div><p>The tree sends you an invitation. Not an alert. An invitation, in the tree's own voice, asking you to come and sit and watch.</p></div>
+        <div class="scene-panel">
+          <div class="panel-art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e1f5ee"/><path d="M30 70 L30 52" stroke="#0f6e56" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="44" r="13" fill="#5dcaa5"/><rect x="50" y="34" width="40" height="28" rx="3" fill="#fff" stroke="#0f6e56" stroke-width="1.5"/><path d="M50 36 L70 50 L90 36" fill="none" stroke="#0f6e56" stroke-width="1.5"/><path d="M44 48 Q48 46 50 48" stroke="#0f6e56" stroke-width="1.5" fill="none"/><circle cx="46" cy="40" r="2" fill="#1d9e75"/></svg></div>
+          <div><div class="panel-num">03</div><p>The tree sends you an invitation. Not an alert. An invitation, in the tree's own voice, asking you to come and sit and watch.</p></div>
         </div>
-        <div class="panel">
-          <div class="art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e1f5ee"/><path d="M40 74 L40 46" stroke="#0f6e56" stroke-width="4" stroke-linecap="round"/><circle cx="40" cy="34" r="18" fill="#5dcaa5"/><circle cx="72" cy="52" r="7" fill="#0f6e56"/><path d="M65 74 Q72 60 79 74 Z" fill="#1d9e75"/><path d="M20 74 H94" stroke="#0f6e56" stroke-width="2" stroke-linecap="round" opacity="0.3"/></svg></div>
-          <div class="txt"><div class="pn">04</div><p>You say yes. The permission is already handled. The tree invited you into its space. You only had to come.</p></div>
+        <div class="scene-panel">
+          <div class="panel-art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e1f5ee"/><path d="M40 74 L40 46" stroke="#0f6e56" stroke-width="4" stroke-linecap="round"/><circle cx="40" cy="34" r="18" fill="#5dcaa5"/><circle cx="72" cy="52" r="7" fill="#0f6e56"/><path d="M65 74 Q72 60 79 74 Z" fill="#1d9e75"/><path d="M20 74 H94" stroke="#0f6e56" stroke-width="2" stroke-linecap="round" opacity="0.3"/></svg></div>
+          <div><div class="panel-num">04</div><p>You say yes. The permission is already handled. The tree invited you into its space. You only had to come.</p></div>
         </div>
-        <div class="panel">
-          <div class="art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e1f5ee"/><circle cx="36" cy="46" r="14" fill="#5dcaa5"/><path d="M36 60 L36 50" stroke="#0f6e56" stroke-width="3"/><circle cx="74" cy="46" r="8" fill="#0f6e56"/><path d="M50 40 Q62 30 70 40" fill="none" stroke="#0f6e56" stroke-width="2" marker-end="url(#ah)"/><path d="M70 54 Q58 64 50 54" fill="none" stroke="#1d9e75" stroke-width="2" marker-end="url(#ah)"/><defs><marker id="ah" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#0f6e56"/></marker></defs></svg></div>
-          <div class="txt"><div class="pn">05</div><p>This is licensing turned around. Not "are you allowed to be here?" but "will you come and be here with me?"</p></div>
+        <div class="scene-panel">
+          <div class="panel-art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e1f5ee"/><circle cx="36" cy="46" r="14" fill="#5dcaa5"/><path d="M36 60 L36 50" stroke="#0f6e56" stroke-width="3"/><circle cx="74" cy="46" r="8" fill="#0f6e56"/><path d="M50 40 Q62 30 70 40" fill="none" stroke="#0f6e56" stroke-width="2" marker-end="url(#ah)"/><path d="M70 54 Q58 64 50 54" fill="none" stroke="#1d9e75" stroke-width="2" marker-end="url(#ah)"/><defs><marker id="ah" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#0f6e56"/></marker></defs></svg></div>
+          <div><div class="panel-num">05</div><p>This is licensing turned around. Not "are you allowed to be here?" but "will you come and be here with me?"</p></div>
         </div>
       </div>
     </div>
 
-    <div class="scene b">
-      <div class="banner">
-        <div class="label">Scenario two · arriving without a history</div>
+    <!-- Scenario B -->
+    <div class="scene-card scene-b">
+      <div class="scene-banner">
+        <div class="scene-label">Scenario two · arriving without a history</div>
         <h3>Amara's first gathering</h3>
-        <div class="sub">A fair way in for someone the system has never met.</div>
+        <div class="scene-sub">A fair way in for someone the system has never met.</div>
       </div>
-      <div class="panels">
-        <div class="panel">
-          <div class="art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e6f1fb"/><circle cx="38" cy="36" r="9" fill="#185fa5"/><path d="M28 70 Q38 50 48 70 Z" fill="#378add"/><ellipse cx="74" cy="58" rx="16" ry="6" fill="#185fa5"/><path d="M58 58 Q74 78 90 58 Z" fill="#85b7eb"/><path d="M68 44 Q70 38 72 44" stroke="#378add" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M76 44 Q78 38 80 44" stroke="#378add" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
-          <div class="txt"><div class="pn">01</div><p>Amara arrived in the city in October. She wants to cook a meal for twenty people in the community garden, with a little music.</p></div>
+      <div class="scene-panels">
+        <div class="scene-panel">
+          <div class="panel-art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e6f1fb"/><circle cx="38" cy="36" r="9" fill="#185fa5"/><path d="M28 70 Q38 50 48 70 Z" fill="#378add"/><ellipse cx="74" cy="58" rx="16" ry="6" fill="#185fa5"/><path d="M58 58 Q74 78 90 58 Z" fill="#85b7eb"/><path d="M68 44 Q70 38 72 44" stroke="#378add" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M76 44 Q78 38 80 44" stroke="#378add" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+          <div><div class="panel-num">01</div><p>Amara arrived in the city in October. She wants to cook a meal for twenty people in the community garden, with a little music.</p></div>
         </div>
-        <div class="panel">
-          <div class="art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e6f1fb"/><rect x="40" y="26" width="28" height="44" rx="2" fill="#b5d4f4"/><circle cx="62" cy="48" r="3" fill="#185fa5"/><rect x="48" y="34" width="20" height="16" rx="2" fill="#fff" stroke="#185fa5" stroke-width="1.5"/><path d="M52 34 V30 a4 4 0 0 1 8 0 V34" fill="none" stroke="#185fa5" stroke-width="1.5"/></svg></div>
-          <div class="txt"><div class="pn">02</div><p>In the old system she would have to prove she belongs. Documents. References. A track record she does not have yet.</p></div>
+        <div class="scene-panel">
+          <div class="panel-art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e6f1fb"/><rect x="40" y="26" width="28" height="44" rx="2" fill="#b5d4f4"/><circle cx="62" cy="48" r="3" fill="#185fa5"/><rect x="48" y="34" width="20" height="16" rx="2" fill="#fff" stroke="#185fa5" stroke-width="1.5"/><path d="M52 34 V30 a4 4 0 0 1 8 0 V34" fill="none" stroke="#185fa5" stroke-width="1.5"/></svg></div>
+          <div><div class="panel-num">02</div><p>In the old system she would have to prove she belongs. Documents. References. A track record she does not have yet.</p></div>
         </div>
-        <div class="panel">
-          <div class="art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e6f1fb"/><rect x="40" y="22" width="28" height="48" rx="4" fill="#fff" stroke="#185fa5" stroke-width="1.5"/><line x1="45" y1="32" x2="63" y2="32" stroke="#85b7eb" stroke-width="2.5"/><line x1="45" y1="40" x2="63" y2="40" stroke="#85b7eb" stroke-width="2.5"/><line x1="45" y1="48" x2="58" y2="48" stroke="#85b7eb" stroke-width="2.5"/><circle cx="48" cy="58" r="3" fill="#1d9e75"/><line x1="54" y1="58" x2="63" y2="58" stroke="#1d9e75" stroke-width="2.5"/></svg></div>
-          <div class="txt"><div class="pn">03</div><p>Here, the platform shows her the conditions for a gathering her size. She can see what other first-time hosts did, and what worked.</p></div>
+        <div class="scene-panel">
+          <div class="panel-art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e6f1fb"/><rect x="40" y="22" width="28" height="48" rx="4" fill="#fff" stroke="#185fa5" stroke-width="1.5"/><line x1="45" y1="32" x2="63" y2="32" stroke="#85b7eb" stroke-width="2.5"/><line x1="45" y1="40" x2="63" y2="40" stroke="#85b7eb" stroke-width="2.5"/><line x1="45" y1="48" x2="58" y2="48" stroke="#85b7eb" stroke-width="2.5"/><circle cx="48" cy="58" r="3" fill="#1d9e75"/><line x1="54" y1="58" x2="63" y2="58" stroke="#1d9e75" stroke-width="2.5"/></svg></div>
+          <div><div class="panel-num">03</div><p>Here, the platform shows her the conditions for a gathering her size. She can see what other first-time hosts did, and what worked.</p></div>
         </div>
-        <div class="panel">
-          <div class="art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e6f1fb"/><circle cx="34" cy="40" r="10" fill="#378add"/><path d="M22 70 Q34 50 46 70 Z" fill="#85b7eb"/><circle cx="74" cy="40" r="10" fill="#185fa5"/><path d="M62 70 Q74 50 86 70 Z" fill="#85b7eb"/><line x1="44" y1="46" x2="64" y2="46" stroke="#185fa5" stroke-width="2.5" stroke-dasharray="3 3"/><circle cx="54" cy="46" r="4" fill="#1d9e75"/></svg></div>
-          <div class="txt"><div class="pn">04</div><p>The risk is medium: evening, outdoors, music. The system asks one thing. Can a neighbour or a local group co-sign the safety conditions with her?</p></div>
+        <div class="scene-panel">
+          <div class="panel-art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e6f1fb"/><circle cx="34" cy="40" r="10" fill="#378add"/><path d="M22 70 Q34 50 46 70 Z" fill="#85b7eb"/><circle cx="74" cy="40" r="10" fill="#185fa5"/><path d="M62 70 Q74 50 86 70 Z" fill="#85b7eb"/><line x1="44" y1="46" x2="64" y2="46" stroke="#185fa5" stroke-width="2.5" stroke-dasharray="3 3"/><circle cx="54" cy="46" r="4" fill="#1d9e75"/></svg></div>
+          <div><div class="panel-num">04</div><p>The risk is medium: evening, outdoors, music. The system asks one thing. Can a neighbour or a local group co-sign the safety conditions with her?</p></div>
         </div>
-        <div class="panel">
-          <div class="art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e6f1fb"/><rect x="38" y="24" width="32" height="44" rx="3" fill="#fff" stroke="#185fa5" stroke-width="1.5"/><line x1="44" y1="34" x2="64" y2="34" stroke="#85b7eb" stroke-width="2"/><line x1="44" y1="42" x2="64" y2="42" stroke="#85b7eb" stroke-width="2"/><circle cx="72" cy="58" r="13" fill="#1d9e75"/><path d="M66 58 L70 63 L78 53" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="txt"><div class="pn">05</div><p>A resident who has hosted ten events in that garden adds their backing. The gathering is approved, with conditions. Amara cooks.</p></div>
+        <div class="scene-panel">
+          <div class="panel-art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e6f1fb"/><rect x="38" y="24" width="32" height="44" rx="3" fill="#fff" stroke="#185fa5" stroke-width="1.5"/><line x1="44" y1="34" x2="64" y2="34" stroke="#85b7eb" stroke-width="2"/><line x1="44" y1="42" x2="64" y2="42" stroke="#85b7eb" stroke-width="2"/><circle cx="72" cy="58" r="13" fill="#1d9e75"/><path d="M66 58 L70 63 L78 53" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div><div class="panel-num">05</div><p>A resident who has hosted ten events in that garden adds their backing. The gathering is approved, with conditions. Amara cooks.</p></div>
         </div>
-        <div class="panel">
-          <div class="art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e6f1fb"/><rect x="34" y="30" width="34" height="28" rx="3" fill="#9fe1cb"/><circle cx="44" cy="40" r="4" fill="#0f6e56"/><path d="M36 56 L48 44 L56 52 L62 46 L66 56 Z" fill="#1d9e75"/><circle cx="78" cy="44" r="11" fill="#ef9f27"/><path d="M74 44 a4 4 0 1 1 8 0" fill="none" stroke="#633806" stroke-width="2"/><circle cx="78" cy="44" r="2" fill="#633806"/></svg></div>
-          <div class="txt"><div class="pn">06</div><p>Afterwards she uploads the photos of a clean, tidy garden. Her first record of care is logged. Next time, the conditions are lighter.</p></div>
+        <div class="scene-panel">
+          <div class="panel-art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#e6f1fb"/><rect x="34" y="30" width="34" height="28" rx="3" fill="#9fe1cb"/><circle cx="44" cy="40" r="4" fill="#0f6e56"/><path d="M36 56 L48 44 L56 52 L62 46 L66 56 Z" fill="#1d9e75"/><circle cx="78" cy="44" r="11" fill="#ef9f27"/><path d="M74 44 a4 4 0 1 1 8 0" fill="none" stroke="#633806" stroke-width="2"/><circle cx="78" cy="44" r="2" fill="#633806"/></svg></div>
+          <div><div class="panel-num">06</div><p>Afterwards she uploads the photos of a clean, tidy garden. Her first record of care is logged. Next time, the conditions are lighter.</p></div>
         </div>
       </div>
     </div>
 
-    <div class="scene c">
-      <div class="banner">
-        <div class="label">Scenario three · imagination before booking</div>
+    <!-- Scenario C -->
+    <div class="scene-card scene-c">
+      <div class="scene-banner">
+        <div class="scene-label">Scenario three · imagination before booking</div>
         <h3>The object changes the question</h3>
-        <div class="sub">Start from what you could imagine, not what is free at 3pm.</div>
+        <div class="scene-sub">Start from what you could imagine, not what is free at 3pm.</div>
       </div>
-      <div class="panels">
-        <div class="panel">
-          <div class="art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#faece7"/><rect x="20" y="60" width="30" height="8" rx="2" fill="#d85a30"/><line x1="62" y1="44" x2="62" y2="66" stroke="#993c1d" stroke-width="2.5"/><line x1="86" y1="44" x2="86" y2="66" stroke="#993c1d" stroke-width="2.5"/><line x1="62" y1="48" x2="86" y2="48" stroke="#d85a30" stroke-width="2" stroke-dasharray="2 2"/><circle cx="34" cy="50" r="5" fill="#f0997b"/><circle cx="44" cy="52" r="5" fill="#f0997b"/></svg></div>
-          <div class="txt"><div class="pn">01</div><p>On a corner in Melbourne, someone places an odd object. A low wooden platform. A net between two poles. A ring of small stools.</p></div>
+      <div class="scene-panels">
+        <div class="scene-panel">
+          <div class="panel-art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#faece7"/><rect x="20" y="60" width="30" height="8" rx="2" fill="#d85a30"/><line x1="62" y1="44" x2="62" y2="66" stroke="#993c1d" stroke-width="2.5"/><line x1="86" y1="44" x2="86" y2="66" stroke="#993c1d" stroke-width="2.5"/><line x1="62" y1="48" x2="86" y2="48" stroke="#d85a30" stroke-width="2" stroke-dasharray="2 2"/><circle cx="34" cy="50" r="5" fill="#f0997b"/><circle cx="44" cy="52" r="5" fill="#f0997b"/></svg></div>
+          <div><div class="panel-num">01</div><p>On a corner in Melbourne, someone places an odd object. A low wooden platform. A net between two poles. A ring of small stools.</p></div>
         </div>
-        <div class="panel">
-          <div class="art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#faece7"/><rect x="38" y="48" width="32" height="10" rx="2" fill="#d85a30"/><path d="M50 40 a6 6 0 1 1 8 5 c-2 1.5 -2 3 -2 5" fill="none" stroke="#993c1d" stroke-width="3" stroke-linecap="round"/><circle cx="56" cy="58" r="2.5" fill="#993c1d"/></svg></div>
-          <div class="txt"><div class="pn">02</div><p>It has no set purpose. It has a shape, and a question. What could happen here?</p></div>
+        <div class="scene-panel">
+          <div class="panel-art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#faece7"/><rect x="38" y="48" width="32" height="10" rx="2" fill="#d85a30"/><path d="M50 40 a6 6 0 1 1 8 5 c-2 1.5 -2 3 -2 5" fill="none" stroke="#993c1d" stroke-width="3" stroke-linecap="round"/><circle cx="56" cy="58" r="2.5" fill="#993c1d"/></svg></div>
+          <div><div class="panel-num">02</div><p>It has no set purpose. It has a shape, and a question. What could happen here?</p></div>
         </div>
-        <div class="panel">
-          <div class="art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#faece7"/><rect x="38" y="22" width="30" height="48" rx="4" fill="#fff" stroke="#993c1d" stroke-width="1.5"/><circle cx="48" cy="38" r="5" fill="#f0997b"/><circle cx="60" cy="38" r="5" fill="#fac775"/><circle cx="48" cy="52" r="5" fill="#9fe1cb"/><circle cx="60" cy="52" r="5" fill="#85b7eb"/><path d="M74 30 L84 24" stroke="#d85a30" stroke-width="2" stroke-linecap="round"/><path d="M76 40 L86 40" stroke="#d85a30" stroke-width="2" stroke-linecap="round"/></svg></div>
-          <div class="txt"><div class="pn">03</div><p>You scan it with your phone. The platform does not show you a calendar. It shows you what you could make of this spot.</p></div>
+        <div class="scene-panel">
+          <div class="panel-art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#faece7"/><rect x="38" y="22" width="30" height="48" rx="4" fill="#fff" stroke="#993c1d" stroke-width="1.5"/><circle cx="48" cy="38" r="5" fill="#f0997b"/><circle cx="60" cy="38" r="5" fill="#fac775"/><circle cx="48" cy="52" r="5" fill="#9fe1cb"/><circle cx="60" cy="52" r="5" fill="#85b7eb"/><path d="M74 30 L84 24" stroke="#d85a30" stroke-width="2" stroke-linecap="round"/><path d="M76 40 L86 40" stroke="#d85a30" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div><div class="panel-num">03</div><p>You scan it with your phone. The platform does not show you a calendar. It shows you what you could make of this spot.</p></div>
         </div>
-        <div class="panel">
-          <div class="art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#faece7"/><circle cx="54" cy="46" r="22" fill="#fff" stroke="#993c1d" stroke-width="2"/><line x1="54" y1="46" x2="54" y2="32" stroke="#d85a30" stroke-width="3" stroke-linecap="round"/><line x1="54" y1="46" x2="64" y2="50" stroke="#d85a30" stroke-width="3" stroke-linecap="round"/><circle cx="80" cy="26" r="9" fill="#1d9e75"/><path d="M76 26 L79 30 L85 23" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="txt"><div class="pn">04</div><p>You choose a use. The system checks the conditions, weighs the risk, and routes it. Six minutes later you have a two-hour permission for a table tennis game.</p></div>
+        <div class="scene-panel">
+          <div class="panel-art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#faece7"/><circle cx="54" cy="46" r="22" fill="#fff" stroke="#993c1d" stroke-width="2"/><line x1="54" y1="46" x2="54" y2="32" stroke="#d85a30" stroke-width="3" stroke-linecap="round"/><line x1="54" y1="46" x2="64" y2="50" stroke="#d85a30" stroke-width="3" stroke-linecap="round"/><circle cx="80" cy="26" r="9" fill="#1d9e75"/><path d="M76 26 L79 30 L85 23" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div><div class="panel-num">04</div><p>You choose a use. The system checks the conditions, weighs the risk, and routes it. Six minutes later you have a two-hour permission for a table tennis game.</p></div>
         </div>
-        <div class="panel">
-          <div class="art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#faece7"/><rect x="24" y="24" width="60" height="44" rx="3" fill="#f5c4b3" opacity="0.5"/><line x1="24" y1="46" x2="84" y2="46" stroke="#d85a30" stroke-width="1.5" opacity="0.6"/><line x1="54" y1="24" x2="54" y2="68" stroke="#d85a30" stroke-width="1.5" opacity="0.6"/><circle cx="64" cy="36" r="3.5" fill="#993c1d"/><circle cx="68" cy="40" r="3.5" fill="#993c1d"/><circle cx="62" cy="42" r="3.5" fill="#993c1d"/><circle cx="70" cy="34" r="3.5" fill="#993c1d"/><circle cx="66" cy="38" r="9" fill="none" stroke="#993c1d" stroke-width="1.5"/></svg></div>
-          <div class="txt"><div class="pn">05</div><p>Three weeks on, the platform sees a pattern. Fourteen proposals on this one corner in a month. The city takes note. The object stays.</p></div>
+        <div class="scene-panel">
+          <div class="panel-art"><svg viewBox="0 0 108 92" xmlns="http://www.w3.org/2000/svg"><rect width="108" height="92" fill="#faece7"/><rect x="24" y="24" width="60" height="44" rx="3" fill="#f5c4b3" opacity="0.5"/><line x1="24" y1="46" x2="84" y2="46" stroke="#d85a30" stroke-width="1.5" opacity="0.6"/><line x1="54" y1="24" x2="54" y2="68" stroke="#d85a30" stroke-width="1.5" opacity="0.6"/><circle cx="64" cy="36" r="3.5" fill="#993c1d"/><circle cx="68" cy="40" r="3.5" fill="#993c1d"/><circle cx="62" cy="42" r="3.5" fill="#993c1d"/><circle cx="70" cy="34" r="3.5" fill="#993c1d"/><circle cx="66" cy="38" r="9" fill="none" stroke="#993c1d" stroke-width="1.5"/></svg></div>
+          <div><div class="panel-num">05</div><p>Three weeks on, the platform sees a pattern. Fourteen proposals on this one corner in a month. The city takes note. The object stays.</p></div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
-<footer>
-  <div class="wrap">
-    <p>Civic Ledger · Berlin gathering preparation · living draft · May 2026. Prepared by Fang, Dark Matter Labs. Three scenarios are illustrative design briefs, not predictions.</p>
+<!-- ============================================================
+     08 · THE FIVE-DAY GATHERING
+     ============================================================ -->
+<section id="gathering" class="sec-divider">
+  <div class="max-w-page mx-auto px-6 md:px-10 py-16 md:py-20">
+
+    <div class="mono-label text-mute eyebrow mb-4">08 · The five-day gathering</div>
+    <h2 class="display-sm text-[32px] md:text-[42px] mt-2 mb-3">Berlin · 21–25 July 2026</h2>
+    <p class="text-[15px] leading-[1.6] text-ink-soft mb-3 max-w-[60ch]">Five days to design a business model, build funder pathways, and test the platform live in the room. The gathering is not a conference. It is a working session with the people who could make this real.</p>
+
+    <!-- Meta strip -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 mt-8 p-6 rounded-lg" style="background:#EEF0F7; border:1px solid #D8D3C4;">
+      <div class="meta-item">
+        <div class="meta-label">Host</div>
+        <div class="meta-val">Civic Tech Studio</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Theme</div>
+        <div class="meta-val">Financing civic infrastructure</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Live case</div>
+        <div class="meta-val">Civic Ledger</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Grant constraint</div>
+        <div class="meta-val">Incheon Uni budget · end July</div>
+      </div>
+    </div>
+
+    <!-- Why Berlin, why now -->
+    <div class="max-w-[800px] mb-14">
+      <div class="mono-label text-accent mb-3">Why Berlin, why now</div>
+      <p class="text-[15px] leading-[1.6] text-ink mb-3">Berlin is not the obvious choice. It is the right one. The German funder landscape — public technology funds, civic infrastructure investors, municipal innovation programmes — is where the next tranche of Civic Ledger support is most likely to come from. Indy named Berlin explicitly on the 21 May Mission Pathways call as the place to be for this conversation.</p>
+      <p class="text-[15px] leading-[1.6] text-ink-soft">The timing matters too. By 21 July the living lab will have run for six weeks across three Incheon sites. The team will have demand signals, at least one end-to-end case, and early usability data. That is the evidence base the gathering is designed to present. Arriving in September would mean the grant has expired and the evidence window has closed.</p>
+    </div>
+
+    <!-- Overall goals -->
+    <div class="max-w-[800px] mb-14">
+      <div class="mono-label text-accent mb-4">Overall goals</div>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="civic-card p-6">
+          <div class="mono-label text-accent mb-2">Goal 01</div>
+          <h4 class="display-sm text-[18px] mb-2">Design the business model</h4>
+          <p class="text-[13.5px] text-ink-soft leading-relaxed">Move from a working hypothesis to a model the team can test and pitch. Who pays, how much, under what conditions, and what does the city get in return.</p>
+        </div>
+        <div class="civic-card p-6">
+          <div class="mono-label text-accent mb-2">Goal 02</div>
+          <h4 class="display-sm text-[18px] mb-2">Build funder pathways</h4>
+          <p class="text-[13.5px] text-ink-soft leading-relaxed">Leave Berlin with 5–10 warm contacts who can be approached with a direct ask. The Brussels public technology fund is one specific lead to identify before invitations go out.</p>
+        </div>
+        <div class="civic-card p-6">
+          <div class="mono-label text-accent mb-2">Goal 03</div>
+          <h4 class="display-sm text-[18px] mb-2">Test the platform live</h4>
+          <p class="text-[13.5px] text-ink-soft leading-relaxed">Use the ECS framework as a live internal tool during the gathering itself. The LLM synthesises positions in the room. The participants experience the platform from the inside.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- The five days -->
+    <div class="max-w-[900px]">
+      <div class="mono-label text-accent mb-6">The five days</div>
+
+      <!-- Day 1 -->
+      <div style="border:1px solid #E2DDD8; border-left:4px solid #2E4FA8; border-radius:10px; overflow:hidden; margin-bottom:16px; background:#fff;">
+        <div style="display:grid; grid-template-columns:140px 1fr; align-items:stretch;">
+          <div style="background:#EEF0F7; padding:24px 20px; border-right:1px solid #E8E3D3;">
+            <div class="mono-label text-accent" style="margin-bottom:6px;">Day 01</div>
+            <div class="display-sm" style="font-size:17px; color:#0E1B2C; line-height:1.2;">Monday<br>21 July</div>
+            <div style="margin-top:10px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#6B7280;">Scene setting</div>
+          </div>
+          <div style="padding:24px 28px;">
+            <div class="display-sm" style="font-size:20px; margin-bottom:10px;">Arriving together. What do we know?</div>
+            <p style="font-size:14px; color:#2A3A52; line-height:1.6; margin-bottom:14px;">The week opens with the evidence. What has the living lab shown so far? What did the Korean pilot teach us? What changed and why? This is not a presentation. It is a shared reading of the work.</p>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; background:#E8EEFB; color:#2E4FA8; border:1px solid #B8C4DD; padding:4px 10px; border-radius:999px;">Morning · Evidence review</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; background:#E8EEFB; color:#2E4FA8; border:1px solid #B8C4DD; padding:4px 10px; border-radius:999px;">Afternoon · Framing session</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; background:#E8EEFB; color:#2E4FA8; border:1px solid #B8C4DD; padding:4px 10px; border-radius:999px;">Evening · Informal dinner</span>
+            </div>
+            <p style="font-size:13px; color:#6B7280; margin-top:12px; font-style:italic;">Session lead: Fang. Input from Professor Kim on living lab data. ECS prototype used to surface initial positions in the room.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div style="border:1px solid #E2DDD8; border-left:4px solid #2E4FA8; border-radius:10px; overflow:hidden; margin-bottom:16px; background:#fff;">
+        <div style="display:grid; grid-template-columns:140px 1fr; align-items:stretch;">
+          <div style="background:#EEF0F7; padding:24px 20px; border-right:1px solid #E8E3D3;">
+            <div class="mono-label text-accent" style="margin-bottom:6px;">Day 02</div>
+            <div class="display-sm" style="font-size:17px; color:#0E1B2C; line-height:1.2;">Tuesday<br>22 July</div>
+            <div style="margin-top:10px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#6B7280;">Core workshop</div>
+          </div>
+          <div style="padding:24px 28px;">
+            <div class="display-sm" style="font-size:20px; margin-bottom:10px;">The business model. Who pays, and for what?</div>
+            <p style="font-size:14px; color:#2A3A52; line-height:1.6; margin-bottom:14px;">The deepest design session of the week. The room works through three questions: what value does Civic Ledger create and for whom, what funding structures fit civic infrastructure of this kind, and what does a steward-shareholder model actually look like in practice.</p>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; background:#E8EEFB; color:#2E4FA8; border:1px solid #B8C4DD; padding:4px 10px; border-radius:999px;">Morning · Value mapping</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; background:#E8EEFB; color:#2E4FA8; border:1px solid #B8C4DD; padding:4px 10px; border-radius:999px;">Afternoon · Model design</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; background:#E8EEFB; color:#2E4FA8; border:1px solid #B8C4DD; padding:4px 10px; border-radius:999px;">Evening · Synthesis</span>
+            </div>
+            <p style="font-size:13px; color:#6B7280; margin-top:12px; font-style:italic;">Session lead: Indy Johar (Civic Tech Studio). Gurden brings the technical architecture perspective. Koo brings the Korean market evidence.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div style="border:1px solid #E2DDD8; border-left:4px solid #2E4FA8; border-radius:10px; overflow:hidden; margin-bottom:16px; background:#fff;">
+        <div style="display:grid; grid-template-columns:140px 1fr; align-items:stretch;">
+          <div style="background:#EEF0F7; padding:24px 20px; border-right:1px solid #E8E3D3;">
+            <div class="mono-label text-accent" style="margin-bottom:6px;">Day 03</div>
+            <div class="display-sm" style="font-size:17px; color:#0E1B2C; line-height:1.2;">Wednesday<br>23 July</div>
+            <div style="margin-top:10px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#6B7280;">Exchange + public</div>
+          </div>
+          <div style="padding:24px 28px;">
+            <div class="display-sm" style="font-size:20px; margin-bottom:10px;">Into the city. Organisations and an open evening.</div>
+            <p style="font-size:14px; color:#2A3A52; line-height:1.6; margin-bottom:14px;">Morning and afternoon are spent visiting Berlin organisations working on civic infrastructure, public technology, and urban governance. The conversations are two-directional: the team listens as much as it presents. The evening is an open session — funders, practitioners, and curious Berliners invited in.</p>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; background:#E8EEFB; color:#2E4FA8; border:1px solid #B8C4DD; padding:4px 10px; border-radius:999px;">Morning · Org visits (Robyn scouts)</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; background:#E8EEFB; color:#2E4FA8; border:1px solid #B8C4DD; padding:4px 10px; border-radius:999px;">Afternoon · Exchange meetings</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; background:#E8EEFB; color:#2E4FA8; border:1px solid #B8C4DD; padding:4px 10px; border-radius:999px;">Evening · Open public session</span>
+            </div>
+            <p style="font-size:13px; color:#6B7280; margin-top:12px; font-style:italic;">Robyn coordinates Berlin logistics and scouting. The open evening is the moment to present to potential funders in a lower-stakes format before formal asks on Day 4.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 4 -->
+      <div style="border:1px solid #E2DDD8; border-left:4px solid #2E4FA8; border-radius:10px; overflow:hidden; margin-bottom:16px; background:#fff;">
+        <div style="display:grid; grid-template-columns:140px 1fr; align-items:stretch;">
+          <div style="background:#EEF0F7; padding:24px 20px; border-right:1px solid #E8E3D3;">
+            <div class="mono-label text-accent" style="margin-bottom:6px;">Day 04</div>
+            <div class="display-sm" style="font-size:17px; color:#0E1B2C; line-height:1.2;">Thursday<br>24 July</div>
+            <div style="margin-top:10px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#6B7280;">Funder sessions</div>
+          </div>
+          <div style="padding:24px 28px;">
+            <div class="display-sm" style="font-size:20px; margin-bottom:10px;">The direct ask. Funder-facing sessions.</div>
+            <p style="font-size:14px; color:#2A3A52; line-height:1.6; margin-bottom:14px;">Targeted sessions with specific funders. Not a pitch deck and a handshake. A structured conversation using the evidence built across the week: what the living lab shows, what the assumptions-tested log reveals, and what the business model looks like after two days of design. The Brussels public technology fund is a specific target to identify before these sessions are booked.</p>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; background:#E8EEFB; color:#2E4FA8; border:1px solid #B8C4DD; padding:4px 10px; border-radius:999px;">Morning · Funder session 1</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; background:#E8EEFB; color:#2E4FA8; border:1px solid #B8C4DD; padding:4px 10px; border-radius:999px;">Afternoon · Funder session 2</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; background:#E8EEFB; color:#2E4FA8; border:1px solid #B8C4DD; padding:4px 10px; border-radius:999px;">Evening · Team debrief</span>
+            </div>
+            <p style="font-size:13px; color:#6B7280; margin-top:12px; font-style:italic;">Day rate costs covered from JFL funding (DM pool). Travel and accommodation handled separately — cannot be charged to the government grant.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 5 -->
+      <div style="border:1px solid #E2DDD8; border-left:4px solid #2E4FA8; border-radius:10px; overflow:hidden; margin-bottom:24px; background:#fff;">
+        <div style="display:grid; grid-template-columns:140px 1fr; align-items:stretch;">
+          <div style="background:#EEF0F7; padding:24px 20px; border-right:1px solid #E8E3D3;">
+            <div class="mono-label text-accent" style="margin-bottom:6px;">Day 05</div>
+            <div class="display-sm" style="font-size:17px; color:#0E1B2C; line-height:1.2;">Friday<br>25 July</div>
+            <div style="margin-top:10px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#6B7280;">Close + next steps</div>
+          </div>
+          <div style="padding:24px 28px;">
+            <div class="display-sm" style="font-size:20px; margin-bottom:10px;">What do we commit to? What comes next?</div>
+            <p style="font-size:14px; color:#2A3A52; line-height:1.6; margin-bottom:14px;">The final day is about commitment, not summary. Each person in the room states what they are prepared to do next and what they are giving up to do it. The week ends with a living list of concrete next steps, owners, and timelines — not a slide deck of actions, but a set of real agreements made in the room.</p>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; background:#E8EEFB; color:#2E4FA8; border:1px solid #B8C4DD; padding:4px 10px; border-radius:999px;">Morning · Pathway review</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; background:#E8EEFB; color:#2E4FA8; border:1px solid #B8C4DD; padding:4px 10px; border-radius:999px;">Afternoon · Commitments session</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; background:#E8EEFB; color:#2E4FA8; border:1px solid #B8C4DD; padding:4px 10px; border-radius:999px;">Close · Living next-steps log</span>
+            </div>
+            <p style="font-size:13px; color:#6B7280; margin-top:12px; font-style:italic;">The ECS framework is used one final time: what is your excitement, your concern, and your suggestion for what comes after this week?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Who is in the room -->
+    <div class="max-w-[900px] mb-14">
+      <div class="mono-label text-accent mb-6">Who is in the room</div>
+      <div class="grid md:grid-cols-2 gap-4">
+
+        <!-- Confirmed/likely -->
+        <div>
+          <div class="mono-label text-mute mb-3" style="color:#0f6e56;">Confirmed or likely</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="background:#fff; border:1px solid #E2DDD8; border-left:3px solid #5dcaa5; border-radius:8px; padding:12px 16px;">
+              <div style="font-weight:600; font-size:14px; color:#0E1B2C;">Indy Johar</div>
+              <div style="font-size:13px; color:#6B7280; margin-top:2px;">Civic Tech Studio · Strategic framing and funder access. Needs confirmation of availability and motivation.</div>
+            </div>
+            <div style="background:#fff; border:1px solid #E2DDD8; border-left:3px solid #5dcaa5; border-radius:8px; padding:12px 16px;">
+              <div style="font-weight:600; font-size:14px; color:#0E1B2C;">Gurden</div>
+              <div style="font-size:13px; color:#6B7280; margin-top:2px;">Berlin-based · Technical architecture, ECS knowledge graph work, AI for negotiation.</div>
+            </div>
+            <div style="background:#fff; border:1px solid #E2DDD8; border-left:3px solid #5dcaa5; border-radius:8px; padding:12px 16px;">
+              <div style="font-weight:600; font-size:14px; color:#0E1B2C;">Simon</div>
+              <div style="font-size:13px; color:#6B7280; margin-top:2px;">Berlin-based · Civic tech ecosystem connections.</div>
+            </div>
+            <div style="background:#fff; border:1px solid #E2DDD8; border-left:3px solid #5dcaa5; border-radius:8px; padding:12px 16px;">
+              <div style="font-weight:600; font-size:14px; color:#0E1B2C;">Koo</div>
+              <div style="font-size:13px; color:#6B7280; margin-top:2px;">Korean product team · Platform evidence and English version design.</div>
+            </div>
+            <div style="background:#fff; border:1px solid #E2DDD8; border-left:3px solid #5dcaa5; border-radius:8px; padding:12px 16px;">
+              <div style="font-weight:600; font-size:14px; color:#0E1B2C;">Professor Kim</div>
+              <div style="font-size:13px; color:#6B7280; margin-top:2px;">Incheon University · Living lab lead. Brings the evidence. Already confirmed by Eunji.</div>
+            </div>
+            <div style="background:#fff; border:1px solid #E2DDD8; border-left:3px solid #5dcaa5; border-radius:8px; padding:12px 16px;">
+              <div style="font-weight:600; font-size:14px; color:#0E1B2C;">Robyn</div>
+              <div style="font-size:13px; color:#6B7280; margin-top:2px;">Berlin-based · Planning partner and local scout. Org visits, venue, logistics.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- To consider -->
+        <div>
+          <div class="mono-label text-mute mb-3" style="color:#854f0b;">To consider — not yet confirmed</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="background:#fff; border:1px solid #E2DDD8; border-left:3px solid #ef9f27; border-radius:8px; padding:12px 16px;">
+              <div style="font-weight:600; font-size:14px; color:#0E1B2C;">Vlad</div>
+              <div style="font-size:13px; color:#6B7280; margin-top:2px;">Mentioned in transcripts. Role and availability not confirmed. Relevant if connected to the funder or German civic tech landscape.</div>
+            </div>
+            <div style="background:#fff; border:1px solid #E2DDD8; border-left:3px solid #ef9f27; border-radius:8px; padding:12px 16px;">
+              <div style="font-weight:600; font-size:14px; color:#0E1B2C;">Carolina</div>
+              <div style="font-size:13px; color:#6B7280; margin-top:2px;">Mentioned in transcripts. Role and availability not confirmed.</div>
+            </div>
+            <div style="background:#fff; border:1px solid #E2DDD8; border-left:3px solid #ef9f27; border-radius:8px; padding:12px 16px;">
+              <div style="font-weight:600; font-size:14px; color:#0E1B2C;">Malik</div>
+              <div style="font-size:13px; color:#6B7280; margin-top:2px;">Has been vague. A specific ask needs to be made. Could bring funder connections or city network access.</div>
+            </div>
+          </div>
+
+          <!-- Open questions box -->
+          <div style="background:#fff; border:1px solid #E2DDD8; border-top:3px solid #6E5C9C; border-radius:10px; padding:20px; margin-top:16px;">
+            <div class="mono-label" style="color:#6E5C9C; margin-bottom:12px;">Open questions to resolve before invitations go out</div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <div style="font-size:13.5px; color:#2A3A52; padding-left:14px; border-left:2px solid #D6CFE5; line-height:1.5;">Is Indy genuinely available and motivated for the full week?</div>
+              <div style="font-size:13.5px; color:#2A3A52; padding-left:14px; border-left:2px solid #D6CFE5; line-height:1.5;">What is the Brussels public technology fund Indy named on 21 May? This needs to be identified before funder sessions are booked.</div>
+              <div style="font-size:13.5px; color:#2A3A52; padding-left:14px; border-left:2px solid #D6CFE5; line-height:1.5;">Has Eunji discussed the Civic Tech Studio as hosting entity? It reframes the week from a Civic Ledger event to a sector-level conversation.</div>
+              <div style="font-size:13.5px; color:#2A3A52; padding-left:14px; border-left:2px solid #D6CFE5; line-height:1.5;">What are the Malik and Robin/Robyn specific asks? Vague invitations produce vague attendance.</div>
+              <div style="font-size:13.5px; color:#2A3A52; padding-left:14px; border-left:2px solid #D6CFE5; line-height:1.5;">Are travel and accommodation costs confirmed as outside grant scope? Day rates from JFL pool are confirmed; travel is not.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Before Berlin: online prep -->
+    <div class="max-w-[800px]">
+      <div class="mono-label text-accent mb-4">Before Berlin · online prep (June–July)</div>
+      <p class="text-[15px] leading-[1.6] text-ink-soft mb-6">The week in Berlin is for business model and pathways. The English app design happens online beforehand, so Berlin stays free for the work only a room can do.</p>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div style="background:#F5F3F0; border:1px solid #E2DDD8; border-radius:8px; padding:18px 20px;">
+          <div class="mono-label text-accent mb-2">Online working sessions</div>
+          <p style="font-size:13.5px; color:#2A3A52; line-height:1.6;">Fang, Eunji, Koo, and a UI/UX designer. English app translation and redesign. Dynamic role transitions, spatial imagination entry point, newcomer on-ramp. This work does not travel to Berlin.</p>
+        </div>
+        <div style="background:#F5F3F0; border:1px solid #E2DDD8; border-radius:8px; padding:18px 20px;">
+          <div class="mono-label text-accent mb-2">Living lab evidence (June–21 July)</div>
+          <p style="font-size:13.5px; color:#2A3A52; line-height:1.6;">Professor Kim's team collecting: activation rate, completion rate, return rate, one end-to-end case. Impact metrics design to be completed before the lab closes. This evidence is what the Berlin week is built around.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="sec-divider bg-sand">
+  <div class="max-w-page mx-auto px-6 md:px-10 py-12">
+    <div class="flex items-center gap-3 mb-4">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="3" stroke="#6B7280" stroke-width="1.4"/>
+        <path d="M6 9h12M6 13h8M6 17h10" stroke="#6B7280" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <span class="mono-label text-mute">Civic Ledger</span>
+    </div>
+    <p class="text-[13px] text-mute">Berlin gathering preparation · living draft · May 2026. Prepared by Fang, Dark Matter Labs. Three scenarios are illustrative design briefs, not predictions.</p>
   </div>
 </footer>
 
